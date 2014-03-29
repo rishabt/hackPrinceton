@@ -1,12 +1,8 @@
 $(document).ready(function(){
-    $("#page_44_28").hide();
+    $("#speedRead").hide();
     $("#bookShelf").show();
-    $("#newBook").hide();  
+    $("#newBook").hide();
     $("#parser").hide();
-
-    $("#parse").on('click', function(){
-        //TODO for the parser, needs to return the author, title, content, and word count which will be asynch posted to the database
-    });
     
     jQuery.extend({
     getValues: function(url) {
@@ -34,8 +30,7 @@ $(document).ready(function(){
     
     firstDiv.on('click', function(){
         $("#bookShelf").hide();
-        //$("#newBook").show();
-        $("#parser").show();
+        $("#newBook").show();
     });
     
     $("#testShelf").append(firstDiv); 
@@ -54,42 +49,12 @@ $(document).ready(function(){
         });
 
         div.on('click', function(){
-            $("#page_44_28").show();
+            $("#speedRead").show();
             $("#bookShelf").hide();
             
             var sprayReader = new SprayReader('#spray_result');
             
         $(document).ready(function() {
-            
-                $("#upSpeed").on("click", function(){
-                    sprayReader.pause();
-                       wpm = $("#speed").text();
-                       wpm = parseInt(wpm, 10);
-                       if (wpm<850) wpm+=50;
-                       $("#speed").text(wpm);
-                        sprayReader.setWpm(wpm);
-                    sprayReader.resume();
-                   });
-
-                    $("#downSpeed").on("click", function(){
-                        sprayReader.pause();
-                       wpm = $("#speed").text();
-                       wpm = parseInt(wpm, 10);
-                        if (wpm>150) wpm-=50;
-                        $("#speed").text(wpm);
-                        sprayReader.setWpm(wpm);
-                        sprayReader.resume();
-                   });
-            $("#daBack").on('click', function(){
-        sprayReader.stop();
-        $(".upage-content").hide();
-        $("#bookShelf").show();
-                running = false;
-                isPaused = false;
-                $("#start").text("");
-                  $("#start").text("start");
-    });
-            
             running = false;
             isPaused = false;
           $('#start').click(function(event) {
@@ -141,5 +106,9 @@ $(document).ready(function(){
         });
 
         $("#testShelf").append(div);  
+    });
+    $("#daBack").on('click', function(){
+        $(".upage-content").hide();
+        $("#bookShelf").show();
     });
 });
