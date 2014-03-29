@@ -37,6 +37,9 @@
     <script type="application/javascript" src="sidebar/js/jquery.event.swipe.js"></script>
     <script type="application/javascript" src="sidebar/js/sidebar.js"></script>
     <script type="application/javascript" src="sidebar/js/swipe.js"></script>
+      <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
   </head>
 
   <body id="afui" class="ios7">
@@ -46,18 +49,14 @@
       <div class="upage panel" id="page0" data-header="af-header-0" data-footer="af-footer-0">
         <div class="upage-outer">
           <header class="container-group inner-element uib_w_1" data-uib="app_framework/header" id="af-header-0">
-            <h1>App Framework</h1>
+            <h1>App Framework</h1><!--
             <div class="widget-container wrapping-col single-centered"></div>
             <div class="widget-container content-area horiz-area wrapping-col left"></div>
-            <div class="widget-container content-area horiz-area wrapping-col right"></div>
+            <div class="widget-container content-area horiz-area wrapping-col right"></div>-->
           </header>
           <div class="upage-content" id="page_44_28">
                   <div class="button-grouped flex widget uib_w_3 d-margins" data-uib="app_framework/button_group"><a class="button widget uib_w_4 d-margins red" data-uib="app_framework/button" id="start">Start</a><a class="button widget uib_w_5 d-margins yellow" data-uib="app_framework/button" id="start">Stop</a>
                   </div>
-                 <!-- <div class="table-thing with-label widget uib_w_33 d-margins" data-uib="app_framework/input" data-ver="0">
-                    <input class="wide-control" type="text" placeholder="input" for="input-text" id="dummyInput">
-                  </div>-->
-
                   <div class="container">
                     <div id="spray_container">
                       <div id="guide_top">
@@ -69,16 +68,17 @@
                       </div>
                     </div>
                   </div>
+              <a href="#" class="ui-btn ui-corner-all ui-icon-carat-u ui-btn-icon-notext" id="upSpeed"></a>
+              <div id="speed">300</div>
+              <a href="#" class="ui-btn ui-corner-all ui-icon-carat-d ui-btn-icon-notext" id="downSpeed"></a>
           </div>
         </div>
-        <!-- /upage-outer -->
-
     </div>
-      <!-- /upage -->
-
     </div>
     <!-- /uwrap -->
 
+    
+      
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js" type="text/javascript"></script>

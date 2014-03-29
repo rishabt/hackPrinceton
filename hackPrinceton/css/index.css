@@ -5,3 +5,17 @@
 #spray_result{
     text-align: center;   
 }
+#upSpeed{
+    margin-top:50px;
+    margin-left:auto;
+    margin-right:auto;
+}
+#downSpeed{
+    margin-left:auto;
+    margin-right:auto;
+}
+#speed{
+    font-size: 2em;
+    width:100%;
+    text-align: center;
+}
