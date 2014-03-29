@@ -1,4 +1,6 @@
 $(document).ready(function(){
+    $("#pause").hide();
+    $("#resume").hide();
     $("#speedRead").hide();
     $("#bookShelf").show();
     $("#newBook").hide();
@@ -131,8 +133,9 @@ $(document).ready(function(){
         $("#bookShelf").show();
         running = false;
         isPaused = false;
-        $("#start").text("");
-        $("#start").text("start");
+        $('#pause').hide();
+        $('#resume').hide();
+        $('#start').show();
     });
 
 
