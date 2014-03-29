@@ -54,6 +54,27 @@ $(document).ready(function(){
             var sprayReader = new SprayReader('#spray_result');
             
         $(document).ready(function() {
+            
+                $("#upSpeed").on("click", function(){
+                    sprayReader.pause();
+                       wpm = $("#speed").text();
+                       wpm = parseInt(wpm, 10);
+                       if (wpm<850) wpm+=50;
+                       $("#speed").text(wpm);
+                        sprayReader.setWpm(wpm);
+                    sprayReader.resume();
+                   });
+
+                    $("#downSpeed").on("click", function(){
+                        sprayReader.pause();
+                       wpm = $("#speed").text();
+                       wpm = parseInt(wpm, 10);
+                        if (wpm>150) wpm-=50;
+                        $("#speed").text(wpm);
+                        sprayReader.setWpm(wpm);
+                        sprayReader.resume();
+                   });
+            
             running = false;
             isPaused = false;
           $('#start').click(function(event) {

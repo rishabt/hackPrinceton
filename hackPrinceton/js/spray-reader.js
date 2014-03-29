@@ -180,17 +180,3 @@ function pivot(word){
 String.prototype.repeat = function( num ){
     return new Array( num + 1 ).join( this );
 }
-
-   $("#upSpeed").on("click", function(){
-       wpm = $("#speed").text();
-       wpm = parseInt(wpm, 10);
-       if (wpm<850) wpm+=50;
-       $("#speed").text(wpm);
-   });
-    
-    $("#downSpeed").on("click", function(){
-       wpm = $("#speed").text();
-       wpm = parseInt(wpm, 10);
-        if (wpm>150) wpm-=50;
-        $("#speed").text(wpm);
-   });
