@@ -1,6 +1,7 @@
 $(document).ready(function(){
     $("#page_44_28").hide();
     $("#bookShelf").show();
+    $("#newBook").hide();
     var bookshelf = {"book" : [{"author": "Dan Brown", "title": "Angels and Demons", "source": "www.danbrown.com", "wordcount": 2, "text": "dark matter"},
                               {"author": "Dan Brown", "title": "Angels and Demons", "source": "www.danbrown.com", "wordcount": 2, "text": "dark matter"}]};
     
@@ -89,7 +90,7 @@ $(document).ready(function(){
         $("#testShelf").append(div);  
     });
     $("#daBack").on('click', function(){
-        $("#page_44_28").hide();
-        $("#bookShelf").show();s
+        $(".upage-content").hide();
+        $("#bookShelf").show();
     });
 });
