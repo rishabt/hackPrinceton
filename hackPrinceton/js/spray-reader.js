@@ -65,6 +65,7 @@ SprayReader.prototype = {
   },
   
   start: function() {
+      this.wordIdx = 0;
       this.isRunning = true;
     
     thisObj = this;
@@ -82,12 +83,12 @@ SprayReader.prototype = {
   },
     
     stop: function(){
-        this.wordIdx = 0;
         this.isRunning = false;
         for(var i = 0; i < this.timers.length; i++) {
           clearTimeout(this.timers[i]);
         }
         this.timer.clear();
+        this.wordIdx = 0;
     },
 
   resume: function() {

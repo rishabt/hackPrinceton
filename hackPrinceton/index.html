@@ -102,18 +102,24 @@
                 sprayReader.start(); 
 
                 event.preventDefault();
+                  $("#start").text("");
+                  $("#start").text("pause");
               }
               else if (isPaused && !running){//Resume function
                   sprayReader.resume();
                     event.preventDefault();
                   running = true;
                   isPaused = false;
+                $("#start").text("");
+                  $("#start").text("pause");
               }
               else if (!isPaused && running){
                 running = false;
                 isPaused = true;
                 sprayReader.pause();
                 event.preventDefault();
+                  $("#start").text("");
+                  $("#start").text("start");
               }
           });
 
@@ -122,6 +128,8 @@
                 isPaused = false;
                 sprayReader.stop();
                 event.preventDefault();
+                $("#start").text("");
+                $("#start").text("start");
           });
         });
     </script>
