@@ -5,25 +5,24 @@ $(document).ready(function(){
                               {"author": "Dan Brown", "title": "Angels and Demons", "source": "www.danbrown.com", "wordcount": 2, "text": "dark matter"}]};
 
     $.each(bookshelf.book, function(index, element){
-        
         var author = element.author;
         var title = element.title;
         var source = element.source;
         var wordcount = element.wordcount;
         var text = element.text;
         
-        var div = $('<li class="widget uib_w_30" data-uib="app_framework/listitem"><a>'+title+'</a><span id=author>'+author+'<span></li>');
+        
+        var div = $('<li class="divider"></li><li data-uib="app_framework/listitem"><a>'+title+'</a><span id=author>'+author+'<span></li>');
         div.css({
            'cursor':'pointer', 
         });
-        
+
         div.on('click', function(){
             $("#page_44_28").show();
             $("#bookShelf").hide();
             
-            
             var sprayReader = new SprayReader('#spray_result');
-
+            
         $(document).ready(function() {
             running = false;
             isPaused = false;
