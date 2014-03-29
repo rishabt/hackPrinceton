@@ -7,7 +7,8 @@ $(document).ready(function(){
     $("#parser").hide();
     $("#pause").hide();
     $("#resume").hide();
-    $("#bookShelf").show();
+    $("#bookShelf").hide();
+    $("#homePage").show();
     
     jQuery.extend({
         getValues: function(url) {
@@ -54,6 +55,7 @@ $(document).ready(function(){
         div.css({
            'cursor':'pointer', 
         });
+        
         
         div.on('click', function(){
             $("#speedRead").show();
@@ -158,6 +160,11 @@ $(document).ready(function(){
         $('#start').show();
     });
 
+    $("#enter").on('click', function(){
+        $('#homePage').hide();
+        $('#bookShelf').show();
+    });
+        
     $("#classicReadButton").on('click', function(){
         $("#speedRead").hide();
         $("#classicRead").show();
