@@ -59,6 +59,7 @@ SprayReader.prototype = {
   },
   
   setWpm: function(wpm) {
+    wpm = 300;
     this.wpm = parseInt(wpm, 10);
     this.msPerWord = 60000/wpm;
   },
