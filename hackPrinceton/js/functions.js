@@ -1,11 +1,12 @@
 $(document).ready(function(){
+    var sprayReader = new SprayReader('#spray_result');
+    
+    $("#newBook").hide();
+    $("#parser").hide();
     $("#pause").hide();
     $("#resume").hide();
     $("#speedRead").hide();
     $("#bookShelf").show();
-    $("#newBook").hide();
-    var sprayReader = new SprayReader('#spray_result');
-    $("#parser").hide();
     
     jQuery.extend({
         getValues: function(url) {
