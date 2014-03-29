@@ -19,6 +19,14 @@
     width:100%;
     text-align: center;
 }
+
+#classicContent
+{
+    font-family: optima;
+    line-height: 2;
+    font-size: 1.3em;
+}
+
 #page0{
     /*display:none !important;   */
 }
