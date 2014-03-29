@@ -1,5 +1,6 @@
 $(document).ready(function(){
-    
+    $("#page_44_28").hide();
+    $("#bookShelf").show();
     var bookshelf = {"book" : [{"author": "Dan Brown", "title": "Angels and Demons", "source": "www.danbrown.com", "wordcount": 2, "text": "dark matter"},
                               {"author": "Dan Brown", "title": "Angels and Demons", "source": "www.danbrown.com", "wordcount": 2, "text": "dark matter"}]};
 
@@ -17,9 +18,8 @@ $(document).ready(function(){
         });
         
         div.on('click', function(){
-            alert("hello");
-            $("#page_44_28").css({'display':'block !important'});
-            $("#bookShelf").css({'display:':'hidden !important'});
+            $("#page_44_28").show();
+            $("#bookShelf").hide();
         });
 
         $("#testShelf").append(div);  
