@@ -90,7 +90,7 @@ $(document).ready(function(){
         sprayReader.resume(); 
         event.preventDefault();
         $('#pause').show();
-        $('#start').hide();
+        $('#resume').hide();
     });
     
     $('#pause').click(function() {
