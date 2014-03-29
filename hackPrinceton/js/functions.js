@@ -1,5 +1,4 @@
 $(document).ready(function(){
-<<<<<<< HEAD
     $("#speedRead").hide();
     $("#bookShelf").show();
     $("#newBook").hide();
