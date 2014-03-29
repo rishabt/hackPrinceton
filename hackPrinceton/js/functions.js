@@ -1,11 +1,12 @@
 $(document).ready(function(){
     var sprayReader = new SprayReader('#spray_result');
     
+    $("#speedRead").hide();
+    $("#classicRead").hide();
     $("#newBook").hide();
     $("#parser").hide();
     $("#pause").hide();
     $("#resume").hide();
-    $("#speedRead").hide();
     $("#bookShelf").show();
     
     jQuery.extend({
@@ -60,6 +61,7 @@ $(document).ready(function(){
             
             var inputText = text;
             var wpm = $('#wpm').val();
+            $("#classicContent").append(inputText);
             sprayReader.setInput(inputText);
             sprayReader.setWpm(wpm);
         });
@@ -139,6 +141,15 @@ $(document).ready(function(){
         $('#start').show();
     });
 
+    $("#classicReadButton").on('click', function(){
+        $("#speedRead").hide();
+        $("#classicRead").show();
+    });
+    
+    $("#speedReadButton").on('click', function(){
+        $("#speedRead").show;
+        $("#classicRead").hide();
+    });
 
     $("#parse").on('click', function(){
         //TODO for the parser, needs to return the author, title, content, and word count which will be asynch posted to the database
