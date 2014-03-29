@@ -87,7 +87,7 @@ SprayReader.prototype = {
         for(var i = 0; i < this.timers.length; i++) {
           clearTimeout(this.timers[i]);
         }
-        this.timer.clear();
+        this.timers = [];
         this.wordIdx = 0;
     },
 

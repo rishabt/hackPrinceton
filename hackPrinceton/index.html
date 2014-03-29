@@ -106,10 +106,10 @@
                   $("#start").text("pause");
               }
               else if (isPaused && !running){//Resume function
+                    running = true;
+                  isPaused = false;
                   sprayReader.resume();
                     event.preventDefault();
-                  running = true;
-                  isPaused = false;
                 $("#start").text("");
                   $("#start").text("pause");
               }
@@ -120,6 +120,10 @@
                 event.preventDefault();
                   $("#start").text("");
                   $("#start").text("start");
+              }
+              else{
+                 running = false;
+                  isPaused = true;
               }
           });
 
