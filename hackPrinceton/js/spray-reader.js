@@ -65,6 +65,7 @@ SprayReader.prototype = {
   },
   
   start: function() {
+      this.timers = [];
       this.wordIdx = 0;
       this.isRunning = true;
     
@@ -75,7 +76,7 @@ SprayReader.prototype = {
     }, this.msPerWord));
   },
   
-  pause: function() { 
+  pause: function() {
     this.isRunning = false;
     for(var i = 0; i < this.timers.length; i++) {
       clearTimeout(this.timers[i]);
@@ -87,7 +88,7 @@ SprayReader.prototype = {
         for(var i = 0; i < this.timers.length; i++) {
           clearTimeout(this.timers[i]);
         }
-        this.timers = [];
+        this.timers.length = 0;
         this.wordIdx = 0;
     },
 

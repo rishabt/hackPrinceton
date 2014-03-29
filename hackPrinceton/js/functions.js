@@ -2,6 +2,7 @@ $(document).ready(function(){
     $("#page_44_28").hide();
     $("#bookShelf").show();
     $("#newBook").hide();  
+    $("#parser").hide();
 
     jQuery.extend({
     getValues: function(url) {
@@ -29,7 +30,8 @@ $(document).ready(function(){
     
     firstDiv.on('click', function(){
         $("#bookShelf").hide();
-        $("#newBook").show();
+        //$("#newBook").show();
+        $("#parser").show();
     });
     
     $("#testShelf").append(firstDiv); 
@@ -74,6 +76,15 @@ $(document).ready(function(){
                         sprayReader.setWpm(wpm);
                         sprayReader.resume();
                    });
+            $("#daBack").on('click', function(){
+        sprayReader.stop();
+        $(".upage-content").hide();
+        $("#bookShelf").show();
+                running = false;
+                isPaused = false;
+                $("#start").text("");
+                  $("#start").text("start");
+    });
             
             running = false;
             isPaused = false;
@@ -126,9 +137,5 @@ $(document).ready(function(){
         });
 
         $("#testShelf").append(div);  
-    });
-    $("#daBack").on('click', function(){
-        $(".upage-content").hide();
-        $("#bookShelf").show();
     });
 });
