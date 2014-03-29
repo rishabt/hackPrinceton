@@ -173,7 +173,14 @@ $(document).ready(function(){
     });
 
     $("#parse").on('click', function(){
-        //TODO for the parser, needs to return the author, title, content, and word count which will be asynch posted to the database
+        /*
+        $.ajax({
+            type: "POST",
+            data: JSON.stringify( {"diddly":"doodly"} ),
+            contentType: "application/json"
+        }).done(function( msg ) {
+            console.log(msg);
+        });*/
     });
     
     /*
