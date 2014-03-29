@@ -110,6 +110,25 @@ $(document).ready(function(){
         $('#start').show();
     });
 
+    $('#rewind').click(function() {
+        sprayReader.rewind();
+    });
+    
+    SprayReader.prototype.rewind = function(){
+        if (sprayReader.wordIdx < 40){
+            sprayReader.wordIdx = 0;   
+            sprayReader.stop();
+            event.preventDefault();
+            sprayReader.start();
+        }
+        else{
+            sprayReader.pause();
+            event.preventDefault();
+            sprayReader.wordIdx = sprayReader.wordIdx - 40;
+            sprayReader.resume();   
+        }
+    }
+    
     SprayReader.prototype.upSpeed = function(){
         sprayReader.pause();
         wpm = $("#speed").text();
@@ -155,5 +174,9 @@ $(document).ready(function(){
 
     $("#parse").on('click', function(){
         //TODO for the parser, needs to return the author, title, content, and word count which will be asynch posted to the database
+    });
+    
+    $("#copyPaste").on('click', function(){
+        
     });
 });
