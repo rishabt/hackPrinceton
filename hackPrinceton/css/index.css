@@ -19,3 +19,9 @@
     width:100%;
     text-align: center;
 }
+#content{
+    display:none !important;   
+}
+#bookShelf{
+    
+}
