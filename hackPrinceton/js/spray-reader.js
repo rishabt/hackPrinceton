@@ -15,7 +15,7 @@ SprayReader.prototype = {
   
   setInput: function(theInput) {
     
-    input = theInput;
+    input = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the";
     
     // Split on spaces
     var allWords = input.split(/\s+/);
@@ -30,7 +30,7 @@ SprayReader.prototype = {
     for (var i=0; i<allWords.length; i++){
 
       if(allWords[i].indexOf('.') != -1){
-        tmpWords[t] = allWords[i].replace('.', 'â€¢');
+        tmpWords[t] = allWords[i].replace('.', '');
       }
 
       // Double up on long words and words with commas.
@@ -160,3 +160,17 @@ function pivot(word){
 String.prototype.repeat = function( num ){
     return new Array( num + 1 ).join( this );
 }
+
+   $("#upSpeed").on("click", function(){
+       wpm = $("#speed").text();
+       wpm = parseInt(wpm, 10);
+       if (wpm<850) wpm+=50;
+       $("#speed").text(wpm);
+   });
+    
+    $("#downSpeed").on("click", function(){
+       wpm = $("#speed").text();
+       wpm = parseInt(wpm, 10);
+        if (wpm>150) wpm-=50;
+        $("#speed").text(wpm);
+   });
