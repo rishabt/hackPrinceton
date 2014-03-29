@@ -84,6 +84,7 @@ SprayReader.prototype = {
   },
     
     stop: function(){
+        //TODO TRY TO CLEAR THE RESULT ON STOP
         this.isRunning = false;
         for(var i = 0; i < this.timers.length; i++) {
           clearTimeout(this.timers[i]);
