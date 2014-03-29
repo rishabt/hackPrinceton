@@ -1,5 +1,5 @@
 .container{
-    width:96%;
+    width:100%;
     margin:0 auto;
 }
 #spray_result{
@@ -28,4 +28,8 @@
 }
 #bookShelf{
     position:absolute;
+}
+#daBack{
+    vertical-align: middle;
+    margin-left:5px;
 }

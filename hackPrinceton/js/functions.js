@@ -77,4 +77,8 @@ $(document).ready(function(){
 
         $("#testShelf").append(div);  
     });
+    $("#daBack").on('click', function(){
+        $("#page_44_28").hide();
+        $("#bookShelf").show();
+    });
 });
