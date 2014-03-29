@@ -1,20 +1,21 @@
 $(document).ready(function(){
     
-    var bookshelf = {"author": "Dan Brown", "title": "Angels and Demons", "source": "www.danbrown.com", "wordcount": 2, "text": "dark matter"};
-    
-    var data = JSON.parse(bookshelf);
-    
+    var bookshelf = {"book" : [{"author": "Dan Brown", "title": "Angels and Demons", "source": "www.danbrown.com", "wordcount": 2, "text": "dark matter"},
+                              {"author": "Dan Brown", "title": "Angels and Demons", "source": "www.danbrown.com", "wordcount": 2, "text": "dark matter"}]};
 
-    /*dataElements = [] //This is all the elements of the database
-    data.each(function(elm){
-        author = elm['author'];
-        title = elm['title'];
-        source = elm['source']
-        wordcount = elm['wordcount'];
-        text = elm['text'];
+    $.each(bookshelf.book, function(index, element){
         
-        div = $("<div class='book'></div>");
+        var author = element.author;
+        var title = element.title;
+        var source = element.source;
+        var wordcount = element.wordcount;
+        var text = element.text;
         
-    }*/
-    
+        var div = $('<li class="widget uib_w_30" data-uib="app_framework/listitem"><a>'+title+'</a></li>');
+        div.css({
+           'cursor':'pointer', 
+        });
+
+        $("#testShelf").append(div);  
+    });
 });
