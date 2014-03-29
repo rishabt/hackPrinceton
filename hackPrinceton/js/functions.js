@@ -2,7 +2,9 @@ $(document).ready(function(){
     $("#page_44_28").hide();
     $("#bookShelf").show();
     $("#newBook").hide();
-    $.ajax({
+    var bookshelf = {"book" : [{"author": "Dan Brown", "title": "Angels and Demons", "source": "www.danbrown.com", "wordcount": 2, "text": "dark matter"},
+ -                          {"author": "Dan Brown", "title": "Angels and Demons", "source": "www.danbrown.com", "wordcount": 2, "text": "dark matter"}]};
+   /* $.ajax({
         url: "https://api.mongolab.com/api/1/databases/hackdarts/collections/bookshelf?apiKey=P25ikg36IXayIZdHlnpBhhbqcpsblHGz",
         type: "POST",
         data: JSON.stringify( {"diddly":"doodly"} ),
@@ -10,7 +12,7 @@ $(document).ready(function(){
     }).done(function( msg ) {
         console.log(msg);
     });
-    
+    */
     var firstDiv = $('<li class="divider"></li><li data-uib="app_framework/listitem"><a class="icon add">Add Your Own</a></li>');
     firstDiv.css({
        'cursor':'pointer', 
