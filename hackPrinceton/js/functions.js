@@ -4,6 +4,10 @@ $(document).ready(function(){
     $("#newBook").hide();  
     $("#parser").hide();
 
+    $("#parse").on('click', function(){
+        //TODO for the parser, needs to return the author, title, content, and word count which will be asynch posted to the database
+    });
+    
     jQuery.extend({
     getValues: function(url) {
         var result = null;
