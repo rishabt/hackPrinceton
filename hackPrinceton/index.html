@@ -1,10 +1,5 @@
 <!DOCTYPE html>
 <html>
-  <!-- content goes here-->
-  <!-- content goes here-->
-  <!-- content goes here-->
-  <!--<script type="application/javascript" src="js/jquery.min.js"></script>-->
-  <!-- content goes here-->
 
   <head>
     <meta charset="UTF-8">
@@ -57,11 +52,16 @@
             <div class="widget-container content-area horiz-area wrapping-col left"></div>
             <div class="widget-container content-area horiz-area wrapping-col right"></div>-->
           </header>
-          <div class="upage-content" id="page_44_28">
-                  <div class="button-grouped flex widget uib_w_3 d-margins" data-uib="app_framework/button_group"><a class="button widget uib_w_4 d-margins red" data-uib="app_framework/button" id="start">Start</a><a class="button widget uib_w_5 d-margins yellow" data-uib="app_framework/button" id="stop">Stop</a>
-                  </div>
-                  <div class="container">
-                    <div id="spray_container">
+            
+          <!-- THIS IS THE PAGE FOR THE SPEED READER -->
+    
+          <div class="upage-content" id="speedRead">
+            <div class="button-grouped flex widget uib_w_3 d-margins" data-uib="app_framework/button_group">
+                <a class="button widget uib_w_4 d-margins red" data-uib="app_framework/button" id="start">Start</a>
+                <a class="button widget uib_w_5 d-margins yellow" data-uib="app_framework/button" id="stop">Stop</a>
+            </div>
+            <div class="container">
+                <div id="spray_container">
                       <div id="guide_top">
                         ――――――――――<span id="notch">ф</span>――――――――――
                       </div>
@@ -69,18 +69,27 @@
                       <div id="guide_bottom">
                         ―――――――――――――――――
                       </div>
-                    </div> 
-                  </div>
+                </div> 
+            </div>
               <a href="#" class="ui-btn ui-corner-all ui-icon-carat-u ui-btn-icon-notext" id="upSpeed"></a>
               <div id="speed">300</div>
               <a href="#" class="ui-btn ui-corner-all ui-icon-carat-d ui-btn-icon-notext" id="downSpeed"></a>
           </div>
-            <div class ="upage-content" id="bookShelf">
-                <div class="bookShelf">
-                    <ul class="list widget uib_w_29" data-uib="app_framework/listview" id="testShelf"></ul>
-                </div>
+        
+             <!-- THIS IS THE END OF THE SPEED READER -->
+            
+            
+            <!-- THIS IS THE BOOKSHELF -->
+            
+        <div class ="upage-content" id="bookShelf">
+            <div class="bookShelf">
+                <ul class="list widget uib_w_29" data-uib="app_framework/listview" id="testShelf"></ul>
             </div>
-            <div class ="upage-content" id="landingPage"></div>
+        </div>
+            
+            <!-- THIS IS THE END OF THE SPEED READER <div class ="upage-content" id="landingPage"></div> -->
+    
+            <!-- THIS IS THE FrameWork for uploading a new book -->
             <div class ="upage-content" id="newBook">
                 <div class="formGroupHead">Enter the Following : </div>
                 <form>
@@ -92,12 +101,18 @@
                     </div>
                 </form>
             </div>
+            
+            
+            
+            <!-- THIS IS Parser!? -->
             <div class ="upage-content" id="parser">
                 <div class="input-group">
                     <input id="urlEnter" type="text" placeholder="URL">
                     <input type="button" value="parse"/>
                 </div>
             </div>
+            
+            
         </div>
     </div>
     </div>
