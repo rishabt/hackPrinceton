@@ -89,29 +89,39 @@
 
         $(document).ready(function() {
             running = false;
+            isPaused = false;
           $('#start').click(function(event) {
-              if(!running){
-                  running=true;
+              if(!running && !isPaused){
+                running=true;
+                isPaused=false;
                 var inputText = $('#dummyInput').val();
                 var wpm = $('#wpm').val();
-
+    
                 sprayReader.setInput(inputText);
                 sprayReader.setWpm(wpm);
-                sprayReader.start();
+                sprayReader.start(); 
 
                 event.preventDefault();
               }
-              else{//Resume function
+              else if (isPaused && !running){//Resume function
                   sprayReader.resume();
+                    event.preventDefault();
+                  running = true;
+                  isPaused = false;
               }
-              running=true;
+              else if (!isPaused && running){
+                running = false;
+                isPaused = true;
+                sprayReader.pause();
+                event.preventDefault();
+              }
           });
 
           $('#stop').click(function(event) {
-              if(running){
+                running = false;
+                isPaused = false;
                 sprayReader.stop();
                 event.preventDefault();
-              }
           });
         });
     </script>

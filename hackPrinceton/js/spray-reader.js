@@ -65,7 +65,7 @@ SprayReader.prototype = {
   },
   
   start: function() {
-    this.isRunning = true;
+      this.isRunning = true;
     
     thisObj = this;
     
@@ -74,13 +74,22 @@ SprayReader.prototype = {
     }, this.msPerWord));
   },
   
-  stop: function() { 
+  pause: function() { 
     this.isRunning = false;
     for(var i = 0; i < this.timers.length; i++) {
       clearTimeout(this.timers[i]);
     }
   },
     
+    stop: function(){
+        this.wordIdx = 0;
+        this.isRunning = false;
+        for(var i = 0; i < this.timers.length; i++) {
+          clearTimeout(this.timers[i]);
+        }
+        this.timer.clear();
+    },
+
   resume: function() {
       origInd = this.wordIdx;
     for(var i = 0; i < this.timers.length-origInd; i++) {
