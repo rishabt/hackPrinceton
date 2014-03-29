@@ -2,41 +2,44 @@
 <html>
 
   <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="app_framework/css/af.ui.min.css">
-    <link rel="stylesheet" type="text/css" href="app_framework/css/icons.min.css">
-    <link rel="stylesheet" type="text/css" href="css/index_main.less.css" class="main-less">
-    <link rel="stylesheet" type="text/css" href="css/index.css">
-    <link rel="stylesheet" type="text/css" href="css/spray-style.css">
-    <title>App Framework Kitchen Sink</title>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
-    <style type="text/css">
-      /* Prevent copy paste for all elements except text fields */
-      *  { -webkit-user-select:none; -webkit-tap-highlight-color:rgba(255, 255, 255, 0); }
-      input, textarea  { -webkit-user-select:text; }
-    </style>
-    <script src="intelxdk.js"></script>
-    <script type="text/javascript">
-      /* This code is used to run as soon as Intel activates */
-      var onDeviceReady=function(){
-        //hide splash screen
-        intel.xdk.device.hideSplashScreen();
-      };
-      document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
-    </script>
-    <script type="application/javascript" src="app_framework/appframework.min.js"></script>
-    <script type="application/javascript" src="app_framework/appframework.ui.min.js"></script>
-    <!--<script type="application/javascript" src="js/jquery.min.js"></script>-->
-    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-    <script type="application/javascript" src="sidebar/js/jquery.event.move.js"></script>
-    <script type="application/javascript" src="sidebar/js/jquery.event.swipe.js"></script>
-    <script type="application/javascript" src="sidebar/js/sidebar.js"></script>
-      <script type="text/javascript" src="js/functions.js"></script>
-    <script type="application/javascript" src="sidebar/js/swipe.js"></script>
+      <title>Ten Minute Reads</title>
+      <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+      <meta charset="UTF-8">
+      
+      <link rel="stylesheet" type="text/css" href="app_framework/css/af.ui.min.css">
+      <link rel="stylesheet" type="text/css" href="app_framework/css/icons.min.css">
+      <link rel="stylesheet" type="text/css" href="css/index_main.less.css" class="main-less">
+      <link rel="stylesheet" type="text/css" href="css/index.css">
+      <link rel="stylesheet" type="text/css" href="css/spray-style.css">
       <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
-<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+
+      <script src="intelxdk.js"></script>
+      <script type="application/javascript" src="app_framework/appframework.min.js"></script>
+      <script type="application/javascript" src="app_framework/appframework.ui.min.js"></script>
+      
+      <script type="application/javascript" src="sidebar/js/jquery.event.move.js"></script>
+      <script type="application/javascript" src="sidebar/js/jquery.event.swipe.js"></script>
+      <script type="application/javascript" src="sidebar/js/sidebar.js"></script>
+      <script type="application/javascript" src="sidebar/js/swipe.js"></script>
+      
+      <script type="text/javascript" src="js/functions.js"></script>
+      
+      <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+      <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+      <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+      
+      <style type="text/css">
+          /* Prevent copy paste for all elements except text fields */
+          *  { -webkit-user-select:none; -webkit-tap-highlight-color:rgba(255, 255, 255, 0); }
+          input, textarea  { -webkit-user-select:text; }
+      </style>
+      <script type="text/javascript">
+          var onDeviceReady=function(){
+              intel.xdk.device.hideSplashScreen();
+          };
+          document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
+      </script>
   </head>
 
   <body id="afui" class="ios7">
@@ -105,6 +108,7 @@
             <!-- THIS IS THE END OF THE SPEED READER <div class ="upage-content" id="landingPage"></div> -->
     
             <!-- THIS IS THE FrameWork for uploading a new book -->
+            <!-- 
             <div class ="upage-content" id="newBook">
                 <div class="formGroupHead">Enter the Following : </div>
                 <form>
@@ -116,14 +120,14 @@
                     </div>
                 </form>
             </div>
-            
+            -->
             
             
     <!-- THIS IS Parser!? -->
             <div class ="upage-content" id="parser">
                 <div class="input-group">
                     <input id="urlEnter" type="text" placeholder="URL">
-                    <input type="button" value="parse"/>
+                    <input type="button" value="Add This!"/>
                 </div>
             </div> 
                   
@@ -148,14 +152,12 @@
       
     
       
+      
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="js/spray-reader.js"></script>
-    <script type="text/javascript">
       
-    </script>
-
   </body>
 
 </html>

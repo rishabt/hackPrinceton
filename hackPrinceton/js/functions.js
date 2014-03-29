@@ -36,7 +36,7 @@ $(document).ready(function(){
     
     firstDiv.on('click', function(){
         $("#bookShelf").hide();
-        $("#newBook").show();
+        $("#parser").show();
     });
     
     $("#testShelf").append(firstDiv); 
@@ -183,7 +183,8 @@ $(document).ready(function(){
         //TODO for the parser, needs to return the author, title, content, and word count which will be asynch posted to the database
     });
     
+    /*
     $("#copyPaste").on('click', function(){
         
-    });
+    });*/
 });
