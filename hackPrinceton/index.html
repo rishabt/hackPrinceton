@@ -103,57 +103,7 @@
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="js/spray-reader.js"></script>
     <script type="text/javascript">
-      var sprayReader = new SprayReader('#spray_result');
-
-        $(document).ready(function() {
-            running = false;
-            isPaused = false;
-          $('#start').click(function(event) {
-              if(!running && !isPaused){
-                running=true;
-                isPaused=false;
-                var inputText = $('#dummyInput').val();
-                var wpm = $('#wpm').val();
-    
-                sprayReader.setInput(inputText);
-                sprayReader.setWpm(wpm);
-                sprayReader.start(); 
-
-                event.preventDefault();
-                  $("#start").text("");
-                  $("#start").text("pause");
-              }
-              else if (isPaused && !running){//Resume function
-                    running = true;
-                  isPaused = false;
-                  sprayReader.resume();
-                    event.preventDefault();
-                $("#start").text("");
-                  $("#start").text("pause");
-              }
-              else if (!isPaused && running){
-                running = false;
-                isPaused = true;
-                sprayReader.pause();
-                event.preventDefault();
-                  $("#start").text("");
-                  $("#start").text("start");
-              }
-              else{
-                 running = false;
-                  isPaused = true;
-              }
-          });
-
-          $('#stop').click(function(event) {
-                running = false;
-                isPaused = false;
-                sprayReader.stop();
-                event.preventDefault();
-                $("#start").text("");
-                $("#start").text("start");
-          });
-        });
+      
     </script>
 
   </body>
