@@ -15,6 +15,12 @@ $(document).ready(function(){
         div.css({
            'cursor':'pointer', 
         });
+        
+        div.on('click', function(){
+            alert("hello");
+            $("#page_44_28").css({'display':'block !important'});
+            $("#bookShelf").css({'display:':'hidden !important'});
+        });
 
         $("#testShelf").append(div);  
     });
