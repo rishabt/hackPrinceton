@@ -9,7 +9,7 @@ $(document).ready(function(){
        'cursor':'pointer', 
     });
     
-    firstDiv.onClick('click', function(){
+    firstDiv.on('click', function(){
         $("#bookShelf").hide();
         $("#newBook").show();
     });
