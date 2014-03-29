@@ -51,11 +51,11 @@ $(document).ready(function(){
                   $("#start").text("pause");
               }
               else if (!isPaused && running){
-                running = false;
+                running = false; 
                 isPaused = true;
                 sprayReader.pause();
                 event.preventDefault();
-                  $("#start").text("");
+                  $("#start").text(""); 
                   $("#start").text("start");
               }
               else{
