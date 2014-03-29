@@ -15,7 +15,7 @@ SprayReader.prototype = {
   
   setInput: function(theInput) {
     
-    input = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the";
+    input = theInput;
     
     // Split on spaces
     var allWords = input.split(/\s+/);
