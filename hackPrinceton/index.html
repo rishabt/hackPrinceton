@@ -56,7 +56,7 @@
             <div class="widget-container content-area horiz-area wrapping-col right"></div>-->
           </header>
           <div class="upage-content" id="page_44_28">
-                  <div class="button-grouped flex widget uib_w_3 d-margins" data-uib="app_framework/button_group"><a class="button widget uib_w_4 d-margins red" data-uib="app_framework/button" id="start">Start</a><a class="button widget uib_w_5 d-margins yellow" data-uib="app_framework/button" id="start">Stop</a>
+                  <div class="button-grouped flex widget uib_w_3 d-margins" data-uib="app_framework/button_group"><a class="button widget uib_w_4 d-margins red" data-uib="app_framework/button" id="start">Start</a><a class="button widget uib_w_5 d-margins yellow" data-uib="app_framework/button" id="stop">Stop</a>
                   </div>
                   <div class="container">
                     <div id="spray_container">
@@ -88,21 +88,30 @@
       var sprayReader = new SprayReader('#spray_result');
 
         $(document).ready(function() {
+            running = false;
           $('#start').click(function(event) {
-            var inputText = $('#dummyInput').val();
-            var wpm = $('#wpm').val();
+              if(!running){
+                  running=true;
+                var inputText = $('#dummyInput').val();
+                var wpm = $('#wpm').val();
 
-            sprayReader.setInput(inputText);
-            sprayReader.setWpm(wpm);
-            sprayReader.start();
+                sprayReader.setInput(inputText);
+                sprayReader.setWpm(wpm);
+                sprayReader.start();
 
-            event.preventDefault();
+                event.preventDefault();
+              }
+              else{//Resume function
+                  sprayReader.resume();
+              }
+              running=true;
           });
 
           $('#stop').click(function(event) {
-            sprayReader.stop();
-
-            event.preventDefault();
+              if(running){
+                sprayReader.stop();
+                event.preventDefault();
+              }
           });
         });
     </script>

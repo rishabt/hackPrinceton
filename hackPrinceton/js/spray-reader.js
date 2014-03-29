@@ -74,14 +74,24 @@ SprayReader.prototype = {
     }, this.msPerWord));
   },
   
-  stop: function() {
+  stop: function() { 
     this.isRunning = false;
-    
     for(var i = 0; i < this.timers.length; i++) {
       clearTimeout(this.timers[i]);
     }
   },
-  
+    
+  resume: function() {
+      origInd = this.wordIdx;
+    for(var i = 0; i < this.timers.length-origInd; i++) {
+        this.timer[i] = this.timer[origInd+i];
+    }
+      this.timers.push(setInterval(function() {
+      thisObj.displayWordAndIncrement();
+    }, this.msPerWord));
+      this.isRunning = true;
+  },
+    
   displayWordAndIncrement: function() {
     var pivotedWord = pivot(this.words[this.wordIdx]);
   
