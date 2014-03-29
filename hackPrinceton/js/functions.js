@@ -12,7 +12,7 @@ $(document).ready(function(){
         var wordcount = element.wordcount;
         var text = element.text;
         
-        var div = $('<li class="widget uib_w_30" data-uib="app_framework/listitem"><a>'+title+'</a></li>');
+        var div = $('<li class="widget uib_w_30" data-uib="app_framework/listitem"><a>'+title+'</a><span id=author>'+author+'<span></li>');
         div.css({
            'cursor':'pointer', 
         });
