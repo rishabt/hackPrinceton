@@ -3,7 +3,19 @@ $(document).ready(function(){
     $("#bookShelf").show();
     var bookshelf = {"book" : [{"author": "Dan Brown", "title": "Angels and Demons", "source": "www.danbrown.com", "wordcount": 2, "text": "dark matter"},
                               {"author": "Dan Brown", "title": "Angels and Demons", "source": "www.danbrown.com", "wordcount": 2, "text": "dark matter"}]};
-
+    
+    var firstDiv = $('<li class="divider"></li><li data-uib="app_framework/listitem"><a class="icon add">Add Your Own</a></li>');
+    firstDiv.css({
+       'cursor':'pointer', 
+    });
+    
+    firstDiv.onClick('click', function(){
+        $("#bookShelf").hide();
+        $("#newBook").show();
+    });
+    
+    $("#testShelf").append(firstDiv); 
+    
     $.each(bookshelf.book, function(index, element){
         var author = element.author;
         var title = element.title;
@@ -78,6 +90,6 @@ $(document).ready(function(){
     });
     $("#daBack").on('click', function(){
         $("#page_44_28").hide();
-        $("#bookShelf").show();
+        $("#bookShelf").show();s
     });
 });
