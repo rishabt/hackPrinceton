@@ -3,6 +3,8 @@
   <!-- content goes here-->
   <!-- content goes here-->
   <!-- content goes here-->
+  <!--<script type="application/javascript" src="js/jquery.min.js"></script>-->
+  <!-- content goes here-->
 
   <head>
     <meta charset="UTF-8">
@@ -60,20 +62,20 @@
                   <div class="table-thing with-label widget uib_w_33 d-margins" data-uib="app_framework/input" data-ver="0">
                     <label class="narrow-control label-inline">Read this</label>
 
-                    <input class="wide-control" type="text" placeholder="input" for="input-text">
+                    <input class="wide-control" type="text" placeholder="input" for="input-text" id="dummyInput">
                   </div>
 
-                    <div class="container">
-                      <div id="spray_container">
-                        <div id="guide_top">
-                            ――――――――――<span id="notch">&#1092;</span>―――――――――――
-                        </div>
-                        <div id="spray_result">&nbsp;</div>
-                        <div id="guide_bottom">
-                            ――――――――――――――――――――――
-                        </div>
+                  <div class="container">
+                    <div id="spray_container">
+                      <div id="guide_top">
+                        ――――――――――<span id="notch">ф</span>―――――――――――
+                      </div>
+                      <div id="spray_result">&nbsp;</div>
+                      <div id="guide_bottom">
+                        ――――――――――――――――――――――
                       </div>
                     </div>
+                  </div>
 
                   <ul class="list widget uib_w_29 d-margins" data-uib="app_framework/listview">
                     <li class="widget uib_w_30" data-uib="app_framework/listitem"><a>List Item1</a>
@@ -143,7 +145,7 @@
 
         $(document).ready(function() {
           $('#start').click(function(event) {
-            var inputText = $('#input-text').val();
+            var inputText = $('#dummyInput').val();
             var wpm = $('#wpm').val();
 
             sprayReader.setInput(inputText);
