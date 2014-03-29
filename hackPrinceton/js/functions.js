@@ -134,8 +134,6 @@ $(document).ready(function(){
         sprayReader.stop();
         $(".upage-content").hide();
         $("#bookShelf").show();
-        running = false;
-        isPaused = false;
         $('#pause').hide();
         $('#resume').hide();
         $('#start').show();
@@ -144,10 +142,14 @@ $(document).ready(function(){
     $("#classicReadButton").on('click', function(){
         $("#speedRead").hide();
         $("#classicRead").show();
+        sprayReader.stop();
+        $('#pause').hide();
+        $('#resume').hide();
+        $('#start').show();
     });
     
     $("#speedReadButton").on('click', function(){
-        $("#speedRead").show;
+        $("#speedRead").show();
         $("#classicRead").hide();
     });
 
