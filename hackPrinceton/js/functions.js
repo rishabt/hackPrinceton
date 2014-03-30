@@ -31,6 +31,9 @@ $(document).ready(function(){
         var bookShelf = $("<ul class='list widget uib_w_29' data-uib='app_framework/listview'></ul>");
         bookShelf.append(librarian(element.books));
         masterShelf.append(bookShelf);
+        masterShelf.on('focus', function(){
+            $('#af-header-0 > h1').text(genre);
+        });
         $("#deweyDecimal").append(masterShelf);
     });
     
@@ -86,8 +89,6 @@ $(document).ready(function(){
             
         return allBooks;
     }
-               
-    alert($('#library')[0].outerHTML);
     
     $("#upSpeed").on("click", function(){
         sprayReader.upSpeed();
@@ -173,7 +174,6 @@ $(document).ready(function(){
         $('#start').show();
         $("#library").show();
         $("#library").children().children().show();
-        alert($('#library')[0].outerHTML);
     });
 
     $("#classicReadButton").on('click', function(){
