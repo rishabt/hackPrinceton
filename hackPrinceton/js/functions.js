@@ -7,7 +7,6 @@ $(document).ready(function(){
     $("#parser").hide();
     $("#pause").hide();
     $("#resume").hide();
-    $("#bookShelf").show();
     
     jQuery.extend({
         getValues: function(url) {
@@ -46,7 +45,7 @@ $(document).ready(function(){
         });
 
         firstDiv.on('click', function(){
-            $("#bookShelf").hide();
+            $("#library").hide();
             $("#parser").show();
         });
 
@@ -88,7 +87,8 @@ $(document).ready(function(){
         return allBooks;
     }
                
-               
+    alert($('#library')[0].outerHTML);
+    
     $("#upSpeed").on("click", function(){
         sprayReader.upSpeed();
     });
@@ -172,6 +172,8 @@ $(document).ready(function(){
         $('#resume').hide();
         $('#start').show();
         $("#library").show();
+        $("#library").children().children().show();
+        alert($('#library')[0].outerHTML);
     });
 
     $("#classicReadButton").on('click', function(){
