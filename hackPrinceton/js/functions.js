@@ -7,7 +7,6 @@ $(document).ready(function(){
     $("#parser").hide();
     $("#pause").hide();
     $("#resume").hide();
-    $("#bookShelf").show();
     
     jQuery.extend({
         getValues: function(url) {
@@ -23,56 +22,86 @@ $(document).ready(function(){
             });
             return result;
         }
-    });  
+    });
     
-    var results = $.getValues("https://api.mongolab.com/api/1/databases/hackdarts/collections/bookshelf?apiKey=P25ikg36IXayIZdHlnpBhhbqcpsblHGz");
+    var results = $.getValues("https://api.mongolab.com/api/1/databases/hackdarts/collections/bookshelf/?apiKey=P25ikg36IXayIZdHlnpBhhbqcpsblHGz");
 
-    
-    var firstDiv = $('<li class="divider"></li><li data-uib="app_framework/listitem"><a class="icon add">Add Your Own</a></li>');
-    firstDiv.css({
-       'cursor':'pointer', 
+    $.each(results[0].bookShelf, function(index, element){
+        var masterShelf = $("<li class ='upage-content'></li>");
+        var bookShelf = $("<ul class='list widget uib_w_29' data-uib='app_framework/listview'></ul>");
+        
+        var addNewDiv = $('<li data-uib="app_framework/listitem"><a class="icon add">Add Your Own</a></li>');
+        
+        if(parseInt(index)==0){
+            addNewDiv.css({
+               'cursor':'pointer', 
+            });
+            addNewDiv.on('click', function(){
+                $("#library").hide();
+                $("#parser").show();
+            });
+            bookShelf.prepend(addNewDiv);
+        }
+        
+        bookShelf.append(librarian(element));
+        masterShelf.append(bookShelf);
+        
+        /* for when we implement the swipe divs
+        masterShelf.on('focus', function(){
+            $('#af-header-0 > h1').text(genre);
+        });*/
+        $("#deweyDecimal").append(masterShelf);
     });
     
-    firstDiv.on('click', function(){
-        $("#bookShelf").hide();
-        $("#newBook").show();
-    });
+    $('#library').hide();
     
-    $("#testShelf").append(firstDiv); 
-    
-    function divActions(author, title, source, wordcount, text){
-        this.author = author;
-        this.title = title;
-        this.source = source;
-        this.wordcount = wordcount;
-        this.text = text;
-        this.running = false;
-        this.isPaused = false;
-       
-        var div = $('<li class="divider"></li><li data-uib="app_framework/listitem"><a>'+title+'</a><span id=author>'+author+'<span></li>');
+    function librarian(shelf){
+        book = shelf.books;
+        var allBooks = [];
         
-        div.css({
-           'cursor':'pointer', 
-        });
         
-        div.on('click', function(){
-            $("#speedRead").show();
-            $("#bookShelf").hide();
+        
+        var genre = $('<li class="divider"></li><li class="genreTag">'+shelf.genre.toUpperCase()+'</li>');
+
+        allBooks.push(genre); 
+
+        function divActions(author, title, source, wordcount, text){
+            this.author = author;
+            this.title = title;
+            this.source = source;
+            this.wordcount = wordcount;
+            this.text = text;
+            this.running = false;
+            this.isPaused = false;
             
-            var inputText = text;
-            var wpm = $('#wpm').val();
-            $("#classicContent").append(inputText);
-            sprayReader.setInput(inputText);
-            sprayReader.setWpm(wpm);
-        });
+            var div = $('<li class="divider"></li><li data-uib="app_framework/listitem"><a>'+title+'</a><span id=author>'+author+'<span></li>');
+
+            div.css({
+               'cursor':'pointer', 
+            });
+
+            div.on('click', function(){
+                $("#speedRead").show();
+                $("#library").hide();
+
+                var inputText = text;
+                var wpm = $('#wpm').val();
+                $("#classicContent").empty();
+                $("#classicContent").append(inputText);
+                sprayReader.setInput(inputText);
+                sprayReader.setWpm(wpm);
+            });
+
+            return div;
+        }
         
-        $("#testShelf").append(div);
+        $.each(book, function(index, element){
+            allBooks.push(new divActions(element.author, element.title, element.source, element.wordcount, element.text));
+        });
+            
+        return allBooks;
     }
     
-    $.each(results[0].book, function(index, element){
-        this.div = new divActions(element.author, element.title, element.source, element.wordcount, element.text);
-    });
-
     $("#upSpeed").on("click", function(){
         sprayReader.upSpeed();
     });
@@ -110,6 +139,25 @@ $(document).ready(function(){
         $('#start').show();
     });
 
+    $('#rewind').click(function() {
+        sprayReader.rewind();
+    });
+    
+    SprayReader.prototype.rewind = function(){
+        if (sprayReader.wordIdx < 40){
+            sprayReader.wordIdx = 0;   
+            sprayReader.stop();
+            event.preventDefault();
+            sprayReader.start();
+        }
+        else{
+            sprayReader.pause();
+            event.preventDefault();
+            sprayReader.wordIdx = sprayReader.wordIdx - 40;
+            sprayReader.resume();   
+        }
+    }
+    
     SprayReader.prototype.upSpeed = function(){
         sprayReader.pause();
         wpm = $("#speed").text();
@@ -118,7 +166,7 @@ $(document).ready(function(){
         $("#speed").text(wpm);
         sprayReader.setWpm(wpm);
         sprayReader.resume();
-    }
+    } 
 
     SprayReader.prototype.downSpeed = function(){
         sprayReader.pause();
@@ -133,10 +181,11 @@ $(document).ready(function(){
     $("#daBack").on('click', function(){
         sprayReader.stop();
         $(".upage-content").hide();
-        $("#bookShelf").show();
         $('#pause').hide();
         $('#resume').hide();
         $('#start').show();
+        $("#library").show();
+        $("#library").children().children().show();
     });
 
     $("#classicReadButton").on('click', function(){
@@ -154,6 +203,22 @@ $(document).ready(function(){
     });
 
     $("#parse").on('click', function(){
-        //TODO for the parser, needs to return the author, title, content, and word count which will be asynch posted to the database
+        $.ajax({
+            type: "POST",
+            data: JSON.stringify( {"diddly":"doodly"} ),
+            contentType: "application/json"
+        }).done(function( msg ) {
+            console.log(msg);
+        });
     });
+    
+    $('#enter').on('click', function(){
+        $('#homePage').hide();
+        $('#library').show();
+    });
+    
+    /*
+    $("#copyPaste").on('click', function(){
+        
+    });*/
 });
