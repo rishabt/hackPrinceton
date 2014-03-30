@@ -46,7 +46,7 @@ $(document).ready(function(){
         book = shelf.books;
         var allBooks = [];
         
-        var genre = $('<li class="divider"></li><li class="genreTag">'+shelf.genre.capitalize()+'</li>');
+        var genre = $('<li class="divider"></li><li class="genreTag" style="line-height:.5em">'+shelf.genre.capitalize()+'</li>');
 
         allBooks.push(genre); 
 
