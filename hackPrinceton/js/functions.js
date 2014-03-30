@@ -7,8 +7,7 @@ $(document).ready(function(){
     $("#parser").hide();
     $("#pause").hide();
     $("#resume").hide();
-    $("#bookShelf").hide();
-    $("#homePage").show();
+    $("#bookShelf").show();
     
     jQuery.extend({
         getValues: function(url) {
@@ -24,57 +23,67 @@ $(document).ready(function(){
             });
             return result;
         }
-    });  
-    
-    var results = $.getValues("https://api.mongolab.com/api/1/databases/hackdarts/collections/bookshelf?apiKey=P25ikg36IXayIZdHlnpBhhbqcpsblHGz");
-
-    
-    var firstDiv = $('<li class="divider"></li><li data-uib="app_framework/listitem"><a class="icon add">Add Your Own</a></li>');
-    firstDiv.css({
-       'cursor':'pointer', 
     });
     
-    firstDiv.on('click', function(){
-        $("#bookShelf").hide();
-        $("#parser").show();
+    var results = $.getValues("https://api.mongolab.com/api/1/databases/hackdarts/collections/bookshelf/?apiKey=P25ikg36IXayIZdHlnpBhhbqcpsblHGz");
+    
+    $.each(results.genre, function(index, element){
+        bookShelf = $("<li class='bookshelf'></li>");
+        bookShelf.append(librarian(genre));
     });
     
-    $("#testShelf").append(firstDiv); 
-    
-    function divActions(author, title, source, wordcount, text){
-        this.author = author;
-        this.title = title;
-        this.source = source;
-        this.wordcount = wordcount;
-        this.text = text;
-        this.running = false;
-        this.isPaused = false;
-       
-        var div = $('<li class="divider"></li><li data-uib="app_framework/listitem"><a>'+title+'</a><span id=author>'+author+'<span></li>');
+    function librarian(genre){
+        var allBooks = [];
         
-        div.css({
+        var firstDiv = $('<li class="divider"></li><li data-uib="app_framework/listitem"><a class="icon add">Add Your Own</a></li>');
+        firstDiv.css({
            'cursor':'pointer', 
         });
-        
-        
-        div.on('click', function(){
-            $("#speedRead").show();
-            $("#bookShelf").hide();
-            
-            var inputText = text;
-            var wpm = $('#wpm').val();
-            $("#classicContent").append(inputText);
-            sprayReader.setInput(inputText);
-            sprayReader.setWpm(wpm);
-        });
-        
-        $("#testShelf").append(div);
-    }
-    
-    $.each(results[0].book, function(index, element){
-        this.div = new divActions(element.author, element.title, element.source, element.wordcount, element.text);
-    });
 
+        firstDiv.on('click', function(){
+            $("#bookShelf").hide();
+            $("#parser").show();
+        });
+
+        allBooks.add(firstDiv); 
+
+        function divActions(author, title, source, wordcount, text){
+            this.author = author;
+            this.title = title;
+            this.source = source;
+            this.wordcount = wordcount;
+            this.text = text;
+            this.running = false;
+            this.isPaused = false;
+            
+            var div = $('<li class="divider"></li><li data-uib="app_framework/listitem"><a>'+title+'</a><span id=author>'+author+'<span></li>');
+
+            div.css({
+               'cursor':'pointer', 
+            });
+
+            div.on('click', function(){
+                $("#speedRead").show();
+                $("#bookShelf").hide();
+
+                var inputText = text;
+                var wpm = $('#wpm').val();
+                $("#classicContent").append(inputText);
+                sprayReader.setInput(inputText);
+                sprayReader.setWpm(wpm);
+            });
+
+            return div;
+        }
+        
+        $.each(results[0].genre.book, function(index, element){
+            allBooks.add(new divActions(element.author, element.title, element.source, element.wordcount, element.text);
+        });
+            
+        return allBooks;
+    }
+               
+               
     $("#upSpeed").on("click", function(){
         sprayReader.upSpeed();
     });
@@ -160,11 +169,6 @@ $(document).ready(function(){
         $('#start').show();
     });
 
-    $("#enter").on('click', function(){
-        $('#homePage').hide();
-        $('#bookShelf').show();
-    });
-        
     $("#classicReadButton").on('click', function(){
         $("#speedRead").hide();
         $("#classicRead").show();
@@ -180,14 +184,13 @@ $(document).ready(function(){
     });
 
     $("#parse").on('click', function(){
-        /*
         $.ajax({
             type: "POST",
             data: JSON.stringify( {"diddly":"doodly"} ),
             contentType: "application/json"
         }).done(function( msg ) {
             console.log(msg);
-        });*/
+        });
     });
     
     /*
