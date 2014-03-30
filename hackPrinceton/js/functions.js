@@ -33,6 +33,19 @@ $(document).ready(function(){
             var bookShelf = $("<ul class='list widget uib_w_29' data-uib='app_framework/listview'></ul>");
 
             console.log(JSON.stringify(element));
+            
+            var addNewDiv = $('<li data-uib="app_framework/listitem"><a class="icon add">Add Your Own</a></li>');
+          
+            if(parseInt(index)==0){
+                addNewDiv.css({
+                    'cursor':'pointer', 
+                });
+                addNewDiv.on('click', function(){
+                    $("#library").hide();
+                    $("#parser").show();
+                });
+                bookShelf.prepend(addNewDiv);
+            }
 
             bookShelf.append(librarian(element));
             masterShelf.append(bookShelf);
@@ -46,7 +59,7 @@ $(document).ready(function(){
             book = shelf.books;
             var allBooks = [];
 
-            var genre = $('<li class="divider"></li><li class="genreTag" style="line-height:.5em">'+shelf.genre.capitalize()+'</li>');
+            var genre = $('<li class="divider"></li><li class="genreTag" style="line-height:1em">'+shelf.genre.capitalize()+'</li>');
 
             allBooks.push(genre); 
 
