@@ -213,7 +213,7 @@ $(document).ready(function(){
         $('#library').show();
     });
     
-    $("#copyPaste").on('click', function(){
+    $("#parses").on('click', function(){
         var theURL = $('#urlEnter').text();
         
         $.ajax({
@@ -225,4 +225,11 @@ $(document).ready(function(){
             }
         });
     });
+    
+    $("#copyPaste").on('click', function(){
+        var cdTitle = $('#cpTitle').text();
+        var cdAuthor = $('#cpAuthor').text();
+        var cdText = $('#cpText').text();
+    }
+    
 });
