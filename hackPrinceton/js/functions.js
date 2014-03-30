@@ -57,7 +57,7 @@ $(document).ready(function(){
         
         
         
-        var genre = $('<li class="divider"></li><li class="genreTag">'+shelf.genre.toUpperCase()+'</li>');
+        var genre = $('<li class="divider"></li><li class="genreTag">'+shelf.genre.capitalize()+'</li>');
 
         allBooks.push(genre); 
 
@@ -105,10 +105,6 @@ $(document).ready(function(){
             
         return allBooks;
     }
-    /*
-    $(document).scroll(function(){
-        console.log($('.genreTag').scrollTop());
-    });*/
     
     $("#upSpeed").on("click", function(){
         sprayReader.upSpeed();
@@ -245,3 +241,7 @@ $(document).ready(function(){
     });
     
 });
+
+String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}

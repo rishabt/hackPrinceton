@@ -29,6 +29,13 @@
     color: #090f0f;
 }
 
+.genreTag{
+    font-family: Optima;
+    line-height: 2;
+    font-size: 1.3em;
+    color: #090f0f;
+}
+
 #page0{
     /*display:none !important;   */
 }
