@@ -58,16 +58,16 @@ $(document).ready(function(){
             this.text = text;
             this.running = false;
             this.isPaused = false;
-            /*
-            if (parseInt(wordCount)>0){
-                var readTime = Math.round(wordCount / 400);
+            
+            if (parseInt(wordcount)>0){
+                var readTime = (Math.ceil( (wordcount / 400) * 10 ) / 10).toFixed(1);
             }
             else{
                 var readTime = 'N/A'   
             }
-            */
+            
             var div = $('<li class="divider"></li><li data-uib="app_framework/listitem"><a>'+title+'</a><span id="author">'+author+'<span>'
-                       +/*'<span id="readTime">'+ readTime*/ +' @400 WPM</li>');
+                       +'<span id="readTime" style="font-size:.5em; position:absolute; text-align:right; right:30px; bottom:25px">'+ readTime +' @400 WPM</li>');
 
             div.css({
                'cursor':'pointer', 
