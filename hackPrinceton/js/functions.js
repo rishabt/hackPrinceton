@@ -69,8 +69,16 @@ $(document).ready(function(){
             this.text = text;
             this.running = false;
             this.isPaused = false;
-            
-            var div = $('<li class="divider"></li><li data-uib="app_framework/listitem"><a>'+title+'</a><span id=author>'+author+'<span></li>');
+            /*
+            if (parseInt(wordCount)>0){
+                var readTime = Math.round(wordCount / 400);
+            }
+            else{
+                var readTime = 'N/A'   
+            }
+            */
+            var div = $('<li class="divider"></li><li data-uib="app_framework/listitem"><a>'+title+'</a><span id="author">'+author+'<span>'
+                       +/*'<span id="readTime">'+ readTime*/ +' @400 WPM</li>');
 
             div.css({
                'cursor':'pointer', 
