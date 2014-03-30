@@ -55,8 +55,6 @@ $(document).ready(function(){
         book = shelf.books;
         var allBooks = [];
         
-        
-        
         var genre = $('<li class="divider"></li><li class="genreTag">'+shelf.genre.capitalize()+'</li>');
 
         allBooks.push(genre); 
@@ -85,6 +83,7 @@ $(document).ready(function(){
             });
 
             div.on('click', function(){
+                window.scrollTo(0, 0);
                 $("#speedRead").show();
                 $("#library").hide();
 
@@ -183,6 +182,7 @@ $(document).ready(function(){
     }
     
     $("#daBack").on('click', function(){
+        window.scrollTo(0, 0);
         sprayReader.stop();
         $(".upage-content").hide();
         $('#pause').hide();
