@@ -28,11 +28,14 @@ $(document).ready(function(){
     var results = $.getValues("https://api.mongolab.com/api/1/databases/hackdarts/collections/bookshelf/?apiKey=P25ikg36IXayIZdHlnpBhhbqcpsblHGz");
 
     $.each(results[0].bookShelf, function(index, element){
-        bookShelf = $("<div class ='upage-content'></div>");
+        var masterShelf = $("<li class ='upage-content'></li>");
+        var bookShelf = $("<ul class='list widget uib_w_29' data-uib='app_framework/listview'></ul>");
         bookShelf.append(librarian(element.books));
-        $("#deweyDecimal").append(bookShelf);
-        $("#library").hide();
+        masterShelf.append(bookShelf);
+        $("#deweyDecimal").append(masterShelf);
     });
+    
+    $('#library').hide();
     
     function librarian(book){
         var allBooks = [];
@@ -66,7 +69,7 @@ $(document).ready(function(){
 
             div.on('click', function(){
                 $("#speedRead").show();
-                $("#bookShelf").hide();
+                $("#library").hide();
 
                 var inputText = text;
                 var wpm = $('#wpm').val();
@@ -150,7 +153,7 @@ $(document).ready(function(){
         $("#speed").text(wpm);
         sprayReader.setWpm(wpm);
         sprayReader.resume();
-    }
+    } 
 
     SprayReader.prototype.downSpeed = function(){
         sprayReader.pause();
@@ -165,10 +168,10 @@ $(document).ready(function(){
     $("#daBack").on('click', function(){
         sprayReader.stop();
         $(".upage-content").hide();
-        $("#bookShelf").show();
         $('#pause').hide();
         $('#resume').hide();
         $('#start').show();
+        $("#library").show();
     });
 
     $("#classicReadButton").on('click', function(){
