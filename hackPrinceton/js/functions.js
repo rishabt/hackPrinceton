@@ -31,9 +31,10 @@ $(document).ready(function(){
         var bookShelf = $("<ul class='list widget uib_w_29' data-uib='app_framework/listview'></ul>");
         bookShelf.append(librarian(element.books));
         masterShelf.append(bookShelf);
+        /* for when we implement the swipe divs
         masterShelf.on('focus', function(){
             $('#af-header-0 > h1').text(genre);
-        });
+        });*/
         $("#deweyDecimal").append(masterShelf);
     });
     
@@ -75,6 +76,7 @@ $(document).ready(function(){
 
                 var inputText = text;
                 var wpm = $('#wpm').val();
+                $("#classicContent").empty();
                 $("#classicContent").append(inputText);
                 sprayReader.setInput(inputText);
                 sprayReader.setWpm(wpm);
