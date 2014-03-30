@@ -1,6 +1,4 @@
 $(document).ready(function(){
-    var sprayReader = new SprayReader('#spray_result');
-    
     $("#speedRead").hide();
     $("#classicRead").hide();
     $("#newBook").hide();
@@ -9,94 +7,100 @@ $(document).ready(function(){
     $("#resume").hide();
     $('#classicReadButton').hide();
     $('#addNewArticle').hide();
-    
-    jQuery.extend({
-        getValues: function(url) {
-            var result = null;
-            $.ajax({
-                url: url,
-                type: "GET",
-                contentType: "application/json",
-                async: false,
-                success: function(data) {
-                    result = data;
-                }
-            });
-            return result;
-        }
-    });
-    
-    var results = $.getValues("https://api.mongolab.com/api/1/databases/hackdarts/collections/bookshelf/?apiKey=P25ikg36IXayIZdHlnpBhhbqcpsblHGz");
 
-    $.each(results[0].bookShelf, function(index, element){
-        var masterShelf = $("<li class ='upage-content'></li>");
-        var bookShelf = $("<ul class='list widget uib_w_29' data-uib='app_framework/listview'></ul>");
-        
-        console.log(JSON.stringify(element));
-        
-        bookShelf.append(librarian(element));
-        masterShelf.append(bookShelf);
-        
-        $("#deweyDecimal").append(masterShelf);
-    });
-    
-    $('#library').hide();
-    
-    function librarian(shelf){
-        book = shelf.books;
-        var allBooks = [];
-        
-        var genre = $('<li class="divider"></li><li class="genreTag" style="line-height:.5em">'+shelf.genre.capitalize()+'</li>');
+    function updateTheLibrary(){
+        var sprayReader = new SprayReader('#spray_result');
 
-        allBooks.push(genre); 
-
-        function divActions(author, title, source, wordcount, text){
-            this.author = author;
-            this.title = title;
-            this.source = source;
-            this.wordcount = wordcount;
-            this.text = text;
-            this.running = false;
-            this.isPaused = false;
-            
-            if (parseInt(wordcount)>0){
-                var readTime = (Math.ceil( (wordcount / 400) * 10 ) / 10).toFixed(1);
+        jQuery.extend({
+            getValues: function(url) {
+                var result = null;
+                $.ajax({
+                    url: url,
+                    type: "GET",
+                    contentType: "application/json",
+                    async: false,
+                    success: function(data) {
+                        result = data;
+                    }
+                });
+                return result;
             }
-            else{
-                var readTime = 'N/A'   
-            }
-            
-            var div = $('<li class="divider"></li><li data-uib="app_framework/listitem"><a>'+title+'</a><span id="author">'+author+'<span>'
-                       +'<span id="readTime" style="font-size:.5em; position:absolute; text-align:right; right:30px; bottom:25px">'+ readTime +'min @400 WPM</li>');
-
-            div.css({
-               'cursor':'pointer', 
-            });
-
-            div.on('click', function(){
-                window.scrollTo(0, 0);
-                $("#speedRead").show();
-                $("#library").hide();
-
-                var inputText = text;
-                var wpm = $('#wpm').val();
-                $("#classicContent").empty();
-                $("#classicContent").append(inputText);
-                sprayReader.setInput(inputText);
-                sprayReader.setWpm(wpm);
-                $('#classicReadButton').show();
-                $('#addNewArticle').hide();
-            });
-
-            return div;
-        }
-        
-        $.each(book, function(index, element){
-            allBooks.push(new divActions(element.author, element.title, element.source, element.wordcount, element.text));
         });
-            
-        return allBooks;
+
+        var results = $.getValues("https://api.mongolab.com/api/1/databases/hackdarts/collections/bookshelf/?apiKey=P25ikg36IXayIZdHlnpBhhbqcpsblHGz");
+
+        $.each(results[0].bookShelf, function(index, element){
+            var masterShelf = $("<li class ='upage-content'></li>");
+            var bookShelf = $("<ul class='list widget uib_w_29' data-uib='app_framework/listview'></ul>");
+
+            console.log(JSON.stringify(element));
+
+            bookShelf.append(librarian(element));
+            masterShelf.append(bookShelf);
+
+            $("#deweyDecimal").append(masterShelf);
+        });
+
+        $('#library').hide();
+
+        function librarian(shelf){
+            book = shelf.books;
+            var allBooks = [];
+
+            var genre = $('<li class="divider"></li><li class="genreTag" style="line-height:.5em">'+shelf.genre.capitalize()+'</li>');
+
+            allBooks.push(genre); 
+
+            function divActions(author, title, source, wordcount, text){
+                this.author = author;
+                this.title = title;
+                this.source = source;
+                this.wordcount = wordcount;
+                this.text = text;
+                this.running = false;
+                this.isPaused = false;
+
+                if (parseInt(wordcount)>0){
+                    var readTime = (Math.ceil( (wordcount / 400) * 10 ) / 10).toFixed(1);
+                }
+                else{
+                    var readTime = 'N/A'   
+                }
+
+                var div = $('<li class="divider"></li><li data-uib="app_framework/listitem"><a>'+title+'</a><span id="author">'+author+'<span>'
+                           +'<span id="readTime" style="font-size:.5em; position:absolute; text-align:right; right:30px; bottom:25px">'+ readTime +'min @400 WPM</li>');
+
+                div.css({
+                   'cursor':'pointer', 
+                });
+
+                div.on('click', function(){
+                    window.scrollTo(0, 0);
+                    $("#speedRead").show();
+                    $("#library").hide();
+
+                    var inputText = text;
+                    var wpm = $('#wpm').val();
+                    $("#classicContent").empty();
+                    $("#classicContent").append(inputText);
+                    sprayReader.setInput(inputText);
+                    sprayReader.setWpm(wpm);
+                    $('#classicReadButton').show();
+                    $('#addNewArticle').hide();
+                });
+
+                return div;
+            }
+
+            $.each(book, function(index, element){
+                allBooks.push(new divActions(element.author, element.title, element.source, element.wordcount, element.text));
+            });
+
+            return allBooks;
+        }
     }
+    
+    updateTheLibrary();
     
     $("#upSpeed").on("click", function(){
         sprayReader.upSpeed();
@@ -227,6 +231,7 @@ $(document).ready(function(){
             data: {textfield : theURL},
             success: function(data) {
                 alert("Sucessfully Added");
+                updateTheLibrary();
             }
         });
     });
