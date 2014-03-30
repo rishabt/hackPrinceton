@@ -1,0 +1,27 @@
+.upage-content {
+    background-color: white; 
+    font-family: Optima;
+    line-height: 1.3;
+    font-size: 1.2em;
+    color: #090f0f;
+}
+.upage-panel {
+     background-color: white; 
+    font-family: Optima;
+    line-height: 1.3;
+    font-size: 1.2em;
+    color: #090f0f;
+}
+
+.center-wrapper{
+text-align: center;
+}
+.center-wrapper * {
+margin: 0 auto;
+}
+
+.ui-controlgroup, fieldset.ui-controlgroup {
+padding: 0;
+margin: .5em 0;
+zoom: 1;
+}

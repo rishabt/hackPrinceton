@@ -5,6 +5,7 @@
 #spray_result{
     text-align: center;   
 }
+
 #upSpeed{
     margin-top:50px;
     margin-left:auto;
@@ -22,9 +23,10 @@
 
 #classicContent
 {
-    font-family: optima;
+    font-family: Optima;
     line-height: 2;
     font-size: 1.3em;
+    color: #090f0f;
 }
 
 #page0{
