@@ -4,9 +4,11 @@ $(document).ready(function(){
     $("#speedRead").hide();
     $("#classicRead").hide();
     $("#newBook").hide();
-    $("#parser").hide();
+    $("#parser").hide(); 
     $("#pause").hide();
     $("#resume").hide();
+    $('#classicReadButton').hide();
+    $('#addNewArticle').hide();
     
     jQuery.extend({
         getValues: function(url) {
@@ -29,19 +31,6 @@ $(document).ready(function(){
     $.each(results[0].bookShelf, function(index, element){
         var masterShelf = $("<li class ='upage-content'></li>");
         var bookShelf = $("<ul class='list widget uib_w_29' data-uib='app_framework/listview'></ul>");
-        
-        var addNewDiv = $('<li data-uib="app_framework/listitem"><a class="icon add">Add Your Own</a></li>');
-        
-        if(parseInt(index)==0){
-            addNewDiv.css({
-               'cursor':'pointer', 
-            });
-            addNewDiv.on('click', function(){
-                $("#library").hide();
-                $("#parser").show();
-            });
-            bookShelf.prepend(addNewDiv);
-        }
         
         bookShelf.append(librarian(element));
         masterShelf.append(bookShelf);
@@ -93,6 +82,8 @@ $(document).ready(function(){
                 $("#classicContent").append(inputText);
                 sprayReader.setInput(inputText);
                 sprayReader.setWpm(wpm);
+                $('#classicReadButton').show();
+                $('#addNewArticle').hide();
             });
 
             return div;
@@ -190,6 +181,8 @@ $(document).ready(function(){
         $('#start').show();
         $("#library").show();
         $("#library").children().children().show();
+        $('#classicReadButton').hide();
+        $('#addNewArticle').show();
     });
 
     $("#classicReadButton").on('click', function(){
@@ -219,6 +212,8 @@ $(document).ready(function(){
     $('#enter').on('click', function(){
         $('#homePage').hide();
         $('#library').show();
+        $('#enter').hide();
+        $('#addNewArticle').show();
     });
     
     $("#parses").on('click', function(){
@@ -234,12 +229,17 @@ $(document).ready(function(){
         });
     });
     
+    $('#addNewDiv').on('click', function(){
+        $("#library").hide();
+        $("#parser").show();
+    });
+    
+    /*
     $("#copyPaste").on('click', function(){
         var cdTitle = $('#cpTitle').text();
         var cdAuthor = $('#cpAuthor').text();
         var cdText = $('#cpText').text();
-    });
-    
+    }); */
 });
 
 String.prototype.capitalize = function() {
