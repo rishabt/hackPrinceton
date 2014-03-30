@@ -32,6 +32,8 @@ $(document).ready(function(){
         var masterShelf = $("<li class ='upage-content'></li>");
         var bookShelf = $("<ul class='list widget uib_w_29' data-uib='app_framework/listview'></ul>");
         
+        console.log(JSON.stringify(element));
+        
         bookShelf.append(librarian(element));
         masterShelf.append(bookShelf);
         
@@ -188,10 +190,10 @@ $(document).ready(function(){
     $("#classicReadButton").on('click', function(){
         $("#speedRead").hide();
         $("#classicRead").show();
-        sprayReader.stop();
+        sprayReader.pause();
         $('#pause').hide();
-        $('#resume').hide();
-        $('#start').show();
+        $('#resume').show();
+        $('#start').hide();
     });
     
     $("#speedReadButton").on('click', function(){
