@@ -46,3 +46,13 @@
 .formGroupHead{
     text-align: center;   
 }
+.genreTag{
+    text-align: center;
+    font-size:2em;   
+}
+.author{
+    text-align: left;  
+}
+.readTime{
+    text-align: right;
+}

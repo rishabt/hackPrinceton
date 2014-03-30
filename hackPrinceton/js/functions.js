@@ -29,31 +29,37 @@ $(document).ready(function(){
     $.each(results[0].bookShelf, function(index, element){
         var masterShelf = $("<li class ='upage-content'></li>");
         var bookShelf = $("<ul class='list widget uib_w_29' data-uib='app_framework/listview'></ul>");
-        bookShelf.append(librarian(element.books));
+        
+        var addNewDiv = $('<li data-uib="app_framework/listitem"><a class="icon add">Add Your Own</a></li>');
+        
+        if(parseInt(index)==0){
+            addNewDiv.css({
+               'cursor':'pointer', 
+            });
+            addNewDiv.on('click', function(){
+                $("#library").hide();
+                $("#parser").show();
+            });
+            bookShelf.prepend(addNewDiv);
+        }
+        
+        bookShelf.append(librarian(element));
         masterShelf.append(bookShelf);
-        /* for when we implement the swipe divs
-        masterShelf.on('focus', function(){
-            $('#af-header-0 > h1').text(genre);
-        });*/
+        
         $("#deweyDecimal").append(masterShelf);
     });
     
     $('#library').hide();
     
-    function librarian(book){
+    function librarian(shelf){
+        book = shelf.books;
         var allBooks = [];
         
-        var firstDiv = $('<li class="divider"></li><li data-uib="app_framework/listitem"><a class="icon add">Add Your Own</a></li>');
-        firstDiv.css({
-           'cursor':'pointer', 
-        });
+        
+        
+        var genre = $('<li class="divider"></li><li class="genreTag">'+shelf.genre.toUpperCase()+'</li>');
 
-        firstDiv.on('click', function(){
-            $("#library").hide();
-            $("#parser").show();
-        });
-
-        allBooks.push(firstDiv); 
+        allBooks.push(genre); 
 
         function divActions(author, title, source, wordcount, text){
             this.author = author;
@@ -63,8 +69,16 @@ $(document).ready(function(){
             this.text = text;
             this.running = false;
             this.isPaused = false;
-            
-            var div = $('<li class="divider"></li><li data-uib="app_framework/listitem"><a>'+title+'</a><span id=author>'+author+'<span></li>');
+            /*
+            if (parseInt(wordCount)>0){
+                var readTime = Math.round(wordCount / 400);
+            }
+            else{
+                var readTime = 'N/A'   
+            }
+            */
+            var div = $('<li class="divider"></li><li data-uib="app_framework/listitem"><a>'+title+'</a><span id="author">'+author+'<span>'
+                       +/*'<span id="readTime">'+ readTime*/ +' @400 WPM</li>');
 
             div.css({
                'cursor':'pointer', 
@@ -207,8 +221,23 @@ $(document).ready(function(){
         $('#library').show();
     });
     
-    /*
-    $("#copyPaste").on('click', function(){
+    $("#parses").on('click', function(){
+        var theURL = $('#urlEnter').text();
         
-    });*/
+        $.ajax({
+            url: "https://api.digitalocean.com/droplets/1378265/HackDarts/?client_id=25298a7e85044ac5e697843930d18b01&api_key=ae56ab09f53a962b23465d3b6b227f79&/home/charlie/alchemyapi_python/parser.py ",
+            type: "POST",
+            data: {textfield : theURL},
+            success: function(data) {
+                alert("Sucessfully Added");
+            }
+        });
+    });
+    
+    $("#copyPaste").on('click', function(){
+        var cdTitle = $('#cpTitle').text();
+        var cdAuthor = $('#cpAuthor').text();
+        var cdText = $('#cpText').text();
+    });
+    
 });
