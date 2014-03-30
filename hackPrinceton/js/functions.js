@@ -26,13 +26,15 @@ $(document).ready(function(){
     });
     
     var results = $.getValues("https://api.mongolab.com/api/1/databases/hackdarts/collections/bookshelf/?apiKey=P25ikg36IXayIZdHlnpBhhbqcpsblHGz");
-    
-    $.each(results.genre, function(index, element){
-        bookShelf = $("<li class='bookshelf'></li>");
-        bookShelf.append(librarian(genre));
+
+    $.each(results[0].bookShelf, function(index, element){
+        bookShelf = $("<div class ='upage-content'></div>");
+        bookShelf.append(librarian(element.books));
+        $("#deweyDecimal").append(bookShelf);
+        $("#library").hide();
     });
     
-    function librarian(genre){
+    function librarian(book){
         var allBooks = [];
         
         var firstDiv = $('<li class="divider"></li><li data-uib="app_framework/listitem"><a class="icon add">Add Your Own</a></li>');
@@ -45,7 +47,7 @@ $(document).ready(function(){
             $("#parser").show();
         });
 
-        allBooks.add(firstDiv); 
+        allBooks.push(firstDiv); 
 
         function divActions(author, title, source, wordcount, text){
             this.author = author;
@@ -76,8 +78,8 @@ $(document).ready(function(){
             return div;
         }
         
-        $.each(results[0].genre.book, function(index, element){
-            allBooks.add(new divActions(element.author, element.title, element.source, element.wordcount, element.text);
+        $.each(book, function(index, element){
+            allBooks.push(new divActions(element.author, element.title, element.source, element.wordcount, element.text));
         });
             
         return allBooks;
@@ -191,6 +193,11 @@ $(document).ready(function(){
         }).done(function( msg ) {
             console.log(msg);
         });
+    });
+    
+    $('#enter').on('click', function(){
+        $('#homePage').hide();
+        $('#library').show();
     });
     
     /*
