@@ -8,7 +8,8 @@ $(document).ready(function(){
     $("#resume").hide();
     $('#classicReadButton').hide();
     $('#addNewArticle').hide();
-
+    
+    /*
     function updateTheLibrary(){
         jQuery.extend({
             getValues: function(url) {
@@ -105,6 +106,106 @@ $(document).ready(function(){
             }
 
             $.each(book, function(index, element){
+                allBooks.push(new divActions(element.author, element.title, element.source, element.wordcount, element.text));
+            });
+
+            return allBooks;
+        }
+    }
+    */
+    
+    function updateTheLibrary(){
+        jQuery.extend({ 
+            getValues: function(url) {
+                var result = null;
+                $.ajax({
+                    url: url,
+                    type: "GET",
+                    contentType: "application/json",
+                    async: false,
+                    success: function(data) {
+                        result = data;
+                    }
+                });
+                return result;
+            }
+        });
+
+        var results = $.getValues("https://api.mongolab.com/api/1/databases/hackdarts/collections/content/?apiKey=P25ikg36IXayIZdHlnpBhhbqcpsblHGz");    
+            
+        $.each(results[0], function(index, element){
+            var masterShelf = $("<li class ='upage-content'></li>");
+            var bookShelf = $("<ul class='list widget uib_w_29' data-uib='app_framework/listview'></ul>");
+
+            if (index != "_id"){
+                console.log(element);
+                bookShelf.append(librarian(element, index));
+                masterShelf.append(bookShelf);
+                $("#deweyDecimal").append(masterShelf);
+            }
+            else{
+                var addNewDiv = $('<li data-uib="app_framework/listitem"><a class="icon add">Add Your Own</a></li>');
+                addNewDiv.css({
+                    'cursor':'pointer', 
+                });
+                addNewDiv.on('click', function(){
+                    $("#library").hide();
+                    $("#parser").show();
+                });
+                bookShelf.prepend(addNewDiv);   
+            }
+        });
+
+        $('#library').hide();
+
+        function librarian(shelf, genre){
+            var allBooks = [];
+
+            var genre = $('<li class="divider"></li><li class="genreTag" style="line-height:1em">'+genre.capitalize()+'</li>');
+
+            allBooks.push(genre); 
+
+            function divActions(author, title, source, wordcount, text){
+                this.author = author;
+                this.title = title;
+                this.source = source;
+                this.wordcount = wordcount;
+                this.text = text;
+
+                if (parseInt(wordcount)>0){
+                    var readTime = (Math.ceil( (wordcount / 400) * 10 ) / 10).toFixed(1);
+                }
+                else{
+                    var readTime = 'N/A'   
+                }
+
+                var div = $('<li class="divider"></li><li data-uib="app_framework/listitem"><a>'+title+'</a><span id="author">'+author+'<span>'
+                           +'<span id="readTime" style="font-size:.5em; position:absolute; text-align:right; right:30px; bottom:25px">'+ readTime +'min @400 WPM</li>');
+
+                div.css({
+                   'cursor':'pointer', 
+                });
+
+                div.on('click', function(){
+                    window.scrollTo(0, 0);
+
+                    $("#classicContent").empty();
+                    $("#classicContent").append(text);
+                    
+                    var wpm = $('#wpm').val();
+                    sprayReader.setInput(text);
+                    sprayReader.setWpm(wpm);
+                    
+                    $("#speedRead").show();
+                    $("#library").hide();
+                    $('#classicReadButton').show();
+                    $('#addNewArticle').hide();
+                });
+
+                return div;
+            }
+
+            $.each(shelf, function(index, element){
                 allBooks.push(new divActions(element.author, element.title, element.source, element.wordcount, element.text));
             });
 
