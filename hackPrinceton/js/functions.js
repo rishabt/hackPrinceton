@@ -46,10 +46,6 @@ $(document).ready(function(){
         bookShelf.append(librarian(element));
         masterShelf.append(bookShelf);
         
-        /* for when we implement the swipe divs
-        masterShelf.on('focus', function(){
-            $('#af-header-0 > h1').text(genre);
-        });*/
         $("#deweyDecimal").append(masterShelf);
     });
     
@@ -217,8 +213,16 @@ $(document).ready(function(){
         $('#library').show();
     });
     
-    /*
     $("#copyPaste").on('click', function(){
+        var theURL = $('#urlEnter').text();
         
-    });*/
+        $.ajax({
+            url: "https://api.digitalocean.com/droplets/1378265/HackDarts/?client_id=25298a7e85044ac5e697843930d18b01&api_key=ae56ab09f53a962b23465d3b6b227f79&/home/charlie/alchemyapi_python/parser.py ",
+            type: "POST",
+            data: {textfield : theURL},
+            success: function(data) {
+                alert("Sucessfully Added");
+            }
+        });
+    });
 });
