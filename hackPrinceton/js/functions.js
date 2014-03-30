@@ -67,7 +67,7 @@ $(document).ready(function(){
             }
             
             var div = $('<li class="divider"></li><li data-uib="app_framework/listitem"><a>'+title+'</a><span id="author">'+author+'<span>'
-                       +'<span id="readTime" style="font-size:.5em; position:absolute; text-align:right; right:30px; bottom:25px">'+ readTime +' @400 WPM</li>');
+                       +'<span id="readTime" style="font-size:.5em; position:absolute; text-align:right; right:30px; bottom:25px">'+ readTime +'min @400 WPM</li>');
 
             div.css({
                'cursor':'pointer', 
