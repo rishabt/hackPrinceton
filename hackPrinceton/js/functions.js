@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    var sprayReader = new SprayReader('#spray_result');
     $("#speedRead").hide();
     $("#classicRead").hide();
     $("#newBook").hide();
@@ -9,8 +10,6 @@ $(document).ready(function(){
     $('#addNewArticle').hide();
 
     function updateTheLibrary(){
-        var sprayReader = new SprayReader('#spray_result');
-
         jQuery.extend({
             getValues: function(url) {
                 var result = null;
