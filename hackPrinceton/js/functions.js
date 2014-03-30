@@ -105,6 +105,10 @@ $(document).ready(function(){
             
         return allBooks;
     }
+    /*
+    $(document).scroll(function(){
+        console.log($('.genreTag').scrollTop());
+    });*/
     
     $("#upSpeed").on("click", function(){
         sprayReader.upSpeed();
