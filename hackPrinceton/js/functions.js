@@ -29,8 +29,23 @@ $(document).ready(function(){
     $.each(results[0].bookShelf, function(index, element){
         var masterShelf = $("<li class ='upage-content'></li>");
         var bookShelf = $("<ul class='list widget uib_w_29' data-uib='app_framework/listview'></ul>");
-        bookShelf.append(librarian(element.books));
+        
+        var addNewDiv = $('<li data-uib="app_framework/listitem"><a class="icon add">Add Your Own</a></li>');
+        
+        if(parseInt(index)==0){
+            addNewDiv.css({
+               'cursor':'pointer', 
+            });
+            addNewDiv.on('click', function(){
+                $("#library").hide();
+                $("#parser").show();
+            });
+            bookShelf.prepend(addNewDiv);
+        }
+        
+        bookShelf.append(librarian(element));
         masterShelf.append(bookShelf);
+        
         /* for when we implement the swipe divs
         masterShelf.on('focus', function(){
             $('#af-header-0 > h1').text(genre);
@@ -40,20 +55,15 @@ $(document).ready(function(){
     
     $('#library').hide();
     
-    function librarian(book){
+    function librarian(shelf){
+        book = shelf.books;
         var allBooks = [];
         
-        var firstDiv = $('<li class="divider"></li><li data-uib="app_framework/listitem"><a class="icon add">Add Your Own</a></li>');
-        firstDiv.css({
-           'cursor':'pointer', 
-        });
+        
+        
+        var genre = $('<li class="divider"></li><li class="genreTag">'+shelf.genre.toUpperCase()+'</li>');
 
-        firstDiv.on('click', function(){
-            $("#library").hide();
-            $("#parser").show();
-        });
-
-        allBooks.push(firstDiv); 
+        allBooks.push(genre); 
 
         function divActions(author, title, source, wordcount, text){
             this.author = author;
