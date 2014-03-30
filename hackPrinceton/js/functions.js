@@ -230,6 +230,6 @@ $(document).ready(function(){
         var cdTitle = $('#cpTitle').text();
         var cdAuthor = $('#cpAuthor').text();
         var cdText = $('#cpText').text();
-    }
+    });
     
 });
