@@ -71,9 +71,7 @@ SprayReader.prototype = {
     
     thisObj = this;
     
-    this.timers.push(setInterval(function() {
-      thisObj.displayWordAndIncrement();
-    }, this.msPerWord));
+    this.resume();
   },
   
   pause: function() {

@@ -31,13 +31,9 @@ $(document).ready(function(){
         $.each(results, function(index, element){
             var masterShelf = $("<li class ='upage-content'></li>");
             var bookShelf = $("<ul class='list widget uib_w_29' data-uib='app_framework/listview'></ul>");
-            
-            console.log(element);
-            bookShelf.append(librarian(element.books, element.genre));
-            masterShelf.append(bookShelf);
-            $("#deweyDecimal").append(masterShelf);
 
             if (index == 0){
+                console.log("hello");
                 var addNewDiv = $('<li data-uib="app_framework/listitem"><a class="icon add">Add Your Own</a></li>');
                 addNewDiv.css({
                     'cursor':'pointer', 
@@ -48,6 +44,10 @@ $(document).ready(function(){
                 });
                 bookShelf.prepend(addNewDiv);   
             }
+            
+            bookShelf.append(librarian(element.books, element.genre));
+            masterShelf.append(bookShelf);
+            $("#deweyDecimal").append(masterShelf);
         });
 
         $('#library').hide();
@@ -157,7 +157,7 @@ $(document).ready(function(){
     });
     
     SprayReader.prototype.rewind = function(){
-        if(sprayReader.isRunning){
+        if(!sprayReader.isRunning){
             if (sprayReader.wordIdx < 40){
                 sprayReader.wordIdx = 0;   
                 sprayReader.stop();
@@ -196,6 +196,7 @@ $(document).ready(function(){
     $("#daBack").on('click', function(){
         window.scrollTo(0, 0);
         sprayReader.stop();
+        event.preventDefault();
         
         $("#headerString").text("QUICK READS");
         $(".upage-content").hide();
