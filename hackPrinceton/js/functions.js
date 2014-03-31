@@ -27,18 +27,17 @@ $(document).ready(function(){
         });
 
         var results = $.getValues("https://api.mongolab.com/api/1/databases/hackdarts/collections/content/?apiKey=P25ikg36IXayIZdHlnpBhhbqcpsblHGz");    
-            
-        $.each(results[0], function(index, element){
+        
+        $.each(results, function(index, element){
             var masterShelf = $("<li class ='upage-content'></li>");
             var bookShelf = $("<ul class='list widget uib_w_29' data-uib='app_framework/listview'></ul>");
+            
+            console.log(element);
+            bookShelf.append(librarian(element.books, element.genre));
+            masterShelf.append(bookShelf);
+            $("#deweyDecimal").append(masterShelf);
 
-            if (index != "_id"){
-                console.log(element);
-                bookShelf.append(librarian(element, index));
-                masterShelf.append(bookShelf);
-                $("#deweyDecimal").append(masterShelf);
-            }
-            else{
+            if (index == 0){
                 var addNewDiv = $('<li data-uib="app_framework/listitem"><a class="icon add">Add Your Own</a></li>');
                 addNewDiv.css({
                     'cursor':'pointer', 
@@ -76,7 +75,7 @@ $(document).ready(function(){
 
                 var div = $('<li class="divider"></li><li data-uib="app_framework/listitem"><a>'+title+'</a><span id="author">'+author+'<span>'
                            +'<span id="readTime" style="font-size:.5em; position:absolute; text-align:right; right:30px; bottom:25px">'+ readTime +'min @400 WPM</li>');
-
+  
                 div.css({
                    'cursor':'pointer', 
                 });
@@ -90,6 +89,12 @@ $(document).ready(function(){
                     var wpm = $('#wpm').val();
                     sprayReader.setInput(text);
                     sprayReader.setWpm(wpm);
+                    
+                    if (title.length > 21){
+                        title = title.substring(0, 20)+'...';
+                    }
+    
+                    $("#headerString").text(title);
                     
                     $("#speedRead").show();
                     $("#library").hide();
@@ -152,17 +157,19 @@ $(document).ready(function(){
     });
     
     SprayReader.prototype.rewind = function(){
-        if (sprayReader.wordIdx < 40){
-            sprayReader.wordIdx = 0;   
-            sprayReader.stop();
-            event.preventDefault();
-            sprayReader.start();
-        }
-        else{
-            sprayReader.pause();
-            event.preventDefault();
-            sprayReader.wordIdx = sprayReader.wordIdx - 40;
-            sprayReader.resume();   
+        if(sprayReader.isRunning){
+            if (sprayReader.wordIdx < 40){
+                sprayReader.wordIdx = 0;   
+                sprayReader.stop();
+                event.preventDefault();
+                sprayReader.start();
+            }
+            else{
+                sprayReader.pause();
+                event.preventDefault();
+                sprayReader.wordIdx = sprayReader.wordIdx - 40;
+                sprayReader.resume();   
+            }
         }
     }
     
@@ -189,6 +196,8 @@ $(document).ready(function(){
     $("#daBack").on('click', function(){
         window.scrollTo(0, 0);
         sprayReader.stop();
+        
+        $("#headerString").text("QUICK READS");
         $(".upage-content").hide();
         $('#pause').hide();
         $('#resume').hide();
