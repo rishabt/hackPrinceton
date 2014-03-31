@@ -94,7 +94,7 @@ $(document).ready(function(){
                         title = title.substring(0, 20)+'...';
                     }
     
-                    $("#headerString").text(title);
+                    //$("#headerString").text(title);
                     
                     $("#speedRead").show();
                     $("#library").hide();
@@ -198,7 +198,7 @@ $(document).ready(function(){
         sprayReader.stop();
         event.preventDefault();
         
-        $("#headerString").text("QUICK READS");
+        //$("#headerString").text("QUICK READS");
         $(".upage-content").hide();
         $('#pause').hide();
         $('#resume').hide();
