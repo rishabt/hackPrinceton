@@ -264,7 +264,17 @@ $(document).ready(function(){
         var cdAuthor = $('#cpAuthor').text();
         var cdGenre = $('#cpGenre').text();
         var cdText = $('#cpText').text();
-        var cdCount = countWords(cdText);
+        //var cdCount = countWords(cdText);
+        
+        $.ajax({
+            //url: "https://api.mongolab.com/api/1/databases/hackdarts/collections/content/?apiKey=P25ikg36IXayIZdHlnpBhhbqcpsblHGz",
+            type: "POST",
+            data: {textfield : cdTitle, textfield : cdAuthor, textfield : cdGenre, textfield : cdText},
+            success: function(data) {
+                alert("Sucessfully Added");
+                updateTheLibrary();
+            }
+        });
     }); 
     
     function countWords(s){
