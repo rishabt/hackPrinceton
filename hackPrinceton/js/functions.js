@@ -33,7 +33,6 @@ $(document).ready(function(){
             var bookShelf = $("<ul class='list widget uib_w_29' data-uib='app_framework/listview'></ul>");
 
             if (index == 0){
-                console.log("hello");
                 var addNewDiv = $('<li data-uib="app_framework/listitem"><a class="icon add">Add Your Own</a></li>');
                 addNewDiv.css({
                     'cursor':'pointer', 
@@ -259,12 +258,21 @@ $(document).ready(function(){
         $("#parser").show();
     });
     
-    /*
+
     $("#copyPaste").on('click', function(){
         var cdTitle = $('#cpTitle').text();
         var cdAuthor = $('#cpAuthor').text();
+        var cdGenre = $('#cpGenre').text();
         var cdText = $('#cpText').text();
-    }); */
+        var cdCount = countWords(cdText);
+    }); 
+    
+    function countWords(s){
+        s = s.replace(/(^\s*)|(\s*$)/gi,"");
+        s = s.replace(/[ ]{2,}/gi," ");
+        s = s.replace(/\n /,"\n");
+        return s.split(' ').length;
+    }
 });
 
 String.prototype.capitalize = function() {
