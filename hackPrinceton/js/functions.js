@@ -209,6 +209,7 @@ $(document).ready(function(){
     });
 
     $("#classicReadButton").on('click', function(){
+        getWordPosition(sprayReader.realIndex[sprayReader.wordIdx]);
         $("#speedRead").hide();
         $("#classicRead").show();
         sprayReader.pause();

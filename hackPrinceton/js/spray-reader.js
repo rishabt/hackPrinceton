@@ -11,10 +11,12 @@ SprayReader.prototype = {
   input: null,
   words: null,
   isRunning: false,
+    realIndex: null,
   timers: [],
   
   setInput: function(theInput) {
-    
+    var realIndex = [];
+      
     input = theInput;
     
     // Split on spaces
@@ -27,8 +29,9 @@ SprayReader.prototype = {
     var tmpWords = allWords.slice(0); // copy Array
     var t = 0;
 
+      var j = 0;
     for (var i=0; i<allWords.length; i++){
-
+        startT = t;
       if(allWords[i].indexOf('.') != -1){
         tmpWords[t] = allWords[i].replace('.', '');
       }
@@ -52,8 +55,12 @@ SprayReader.prototype = {
       }
 
       t++;
+        j++;
+        for(var k=startT; k<t; k++){
+            realIndex.push(j);
+        }
     }
-
+      this.realIndex = realIndex.slice(0);
     this.words = tmpWords.slice(0);
     this.wordIdx = 0;
   },
