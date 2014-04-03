@@ -299,7 +299,6 @@ $(document).ready(function(){
         window.scrollTo(0, 0);
 
         var text = $('#instaReadText').val();
-        alert(text);
         
         $("#classicContent").empty();
         $("#classicContent").append(text);
