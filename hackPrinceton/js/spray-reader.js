@@ -110,8 +110,9 @@ SprayReader.prototype = {
   },
     
     progressUpdate : function(){
-        var percent = (Math.ceil( (this.wordIdx*100 / this.words.length) * 10 ) / 10).toFixed(0);
-        $('#progressPercent').text(percent);
+        var percent = (Math.ceil( (100*this.wordIdx / this.words.length) * 10 ) / 10).toFixed(2);
+        console.log($('#progressBar').width());
+        $('#theProgress').width(percent+'%');
     },
     
   displayWordAndIncrement: function() {

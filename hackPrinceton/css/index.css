@@ -60,6 +60,6 @@
 .author{
     text-align: left;  
 }
-#progress{
-    text-align: center;   
+#progressBar{
+    border : 2px outset #000000;   
 }
