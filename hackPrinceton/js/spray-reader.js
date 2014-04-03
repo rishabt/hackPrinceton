@@ -15,6 +15,10 @@ SprayReader.prototype = {
   timers: [],
   
   setInput: function(theInput) {
+        $('#theProgress').css({
+            'background' : '#123456',
+            'width' : '0',
+        });
     var realIndex = [];
       
     input = theInput;
@@ -108,7 +112,7 @@ SprayReader.prototype = {
     }, this.msPerWord));
       this.isRunning = true;
   },
-    
+     
     progressUpdate : function(){
         var percent = (Math.ceil( (100*this.wordIdx / this.words.length) * 10 ) / 10).toFixed(2);
         console.log($('#progressBar').width());
@@ -124,6 +128,10 @@ SprayReader.prototype = {
     if (thisObj.wordIdx >= thisObj.words.length) {
       this.wordIdx = 0;
       this.stop();
+        $('#theProgress').css({
+            'background' : '#00FF00',
+            'width' : '100%',
+        });
     }
   }
 };
