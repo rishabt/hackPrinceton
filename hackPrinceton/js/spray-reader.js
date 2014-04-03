@@ -109,9 +109,14 @@ SprayReader.prototype = {
       this.isRunning = true;
   },
     
+    progressUpdate : function(){
+        var percent = (Math.ceil( (this.wordIdx*100 / this.words.length) * 10 ) / 10).toFixed(0);
+        $('#progressPercent').text(percent);
+    },
+    
   displayWordAndIncrement: function() {
     var pivotedWord = pivot(this.words[this.wordIdx]);
-  
+    this.progressUpdate();
     this.container.html(pivotedWord);
     
     this.wordIdx++;

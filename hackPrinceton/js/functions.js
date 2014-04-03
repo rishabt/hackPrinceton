@@ -216,6 +216,7 @@ $(document).ready(function(){
         $('#pause').hide();
         $('#resume').show();
         $('#start').hide();
+        window.scrollTo($('#highlight'));
     });
     
     $("#speedReadButton").on('click', function(){
