@@ -1,5 +1,6 @@
 $(document).ready(function(){
     var sprayReader = new SprayReader('#spray_result');
+    $("#instaRead").hide();
     $("#speedRead").hide();
     $("#classicRead").hide();
     $("#newBook").hide();
@@ -42,6 +43,18 @@ $(document).ready(function(){
                     $("#parser").show();
                 });
                 bookShelf.prepend(addNewDiv);   
+                
+                var instaRead = $('<li data-uib="app_framework/listitem"><a>Instant Read (Copy-Paste)</a></li>');
+                instaRead.css({
+                    'cursor':'pointer', 
+                });
+                instaRead.on('click', function(){
+                    $("#library").hide();
+                    $("#instaRead").show();
+                });
+                
+                bookShelf.prepend(addNewDiv);
+                bookShelf.prepend(instaRead);
             }
             
             bookShelf.append(librarian(element.books, element.genre));
@@ -89,11 +102,14 @@ $(document).ready(function(){
                     sprayReader.setInput(text);
                     sprayReader.setWpm(wpm);
                     
+                    //This is to change the header
+                    /* 
                     if (title.length > 21){
                         title = title.substring(0, 20)+'...';
                     }
     
-                    //$("#headerString").text(title);
+                    $("#headerString").text(title);
+                    */
                     
                     $("#speedRead").show();
                     $("#library").hide();
@@ -278,6 +294,34 @@ $(document).ready(function(){
             }
         });
     }); 
+    
+    $('#instaReadButton').on('click', function(){
+        window.scrollTo(0, 0);
+
+        var text = $('#instaReadText').val();
+        alert(text);
+        
+        $("#classicContent").empty();
+        $("#classicContent").append(text);
+
+        var wpm = $('#wpm').val();
+        sprayReader.setInput(text); 
+        sprayReader.setWpm(wpm);
+
+        //This is to change the header
+        /* 
+        if (title.length > 21){
+        title = title.substring(0, 20)+'...';
+        }
+
+        $("#headerString").text(title);
+        */
+
+        $("#speedRead").show();
+        $("#library").hide();
+        $('#classicReadButton').show();
+        $('#instaRead').hide();
+    });
     
     function countWords(s){
         s = s.replace(/(^\s*)|(\s*$)/gi,"");
