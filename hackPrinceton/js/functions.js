@@ -259,7 +259,6 @@ $(document).ready(function(){
         $('#start').hide();
         if (($('#highlight').offset().top-200)<0){
             $('#page0').scrollTop(0);
-            alert("hello");
         }
         else{
             $('#page0').scrollTop($('#highlight').offset().top-200);
@@ -286,6 +285,7 @@ $(document).ready(function(){
         $('#library').show();
         $('#enter').hide();
         $('#addNewArticle').show();
+        $("#footerButtons").css({'display' : "block"})
     });
     
     $("#parses").on('click', function(){
