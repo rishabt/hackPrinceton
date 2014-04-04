@@ -175,6 +175,13 @@ $(document).ready(function(){
         if(!sprayReader.isRunning){
             if (sprayReader.wordIdx < 40){
                 sprayReader.wordIdx = 0;   
+            }
+            else{
+                sprayReader.wordIdx = sprayReader.wordIdx - 40; 
+            }
+        }
+        else{
+            if (sprayReader.wordIdx < 40){ 
                 sprayReader.stop();
                 event.preventDefault();
                 sprayReader.start();
@@ -184,7 +191,7 @@ $(document).ready(function(){
                 event.preventDefault();
                 sprayReader.wordIdx = sprayReader.wordIdx - 40;
                 sprayReader.resume();   
-            }
+            }   
         }
     }
     
