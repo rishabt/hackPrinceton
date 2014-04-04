@@ -253,15 +253,19 @@ $(document).ready(function(){
         getWordPosition(sprayReader.realIndex[sprayReader.wordIdx]);
         $("#speedRead").hide();
         $("#classicRead").show();
-        sprayReader.pause();
-        $('#pause').hide();
-        $('#resume').show();
-        $('#start').hide();
-        if (($('#highlight').offset().top-200)<0){
-            $('#page0').scrollTop(0);
+        if (sprayReader.isRunning){
+            sprayReader.pause();
+            $('#pause').hide();
+            $('#resume').show();
+            $('#start').hide();
         }
-        else{
-            $('#page0').scrollTop($('#highlight').offset().top-200);
+        if ($('#highlight').length){
+            if (($('#highlight').offset().top-200)<0){
+                $('#page0').scrollTop(0);
+            }
+            else{
+                $('#page0').scrollTop($('#highlight').offset().top-200);
+            }
         }
     });
     
@@ -285,7 +289,6 @@ $(document).ready(function(){
         $('#library').show();
         $('#enter').hide();
         $('#addNewArticle').show();
-        $("#footerButtons").css({'display' : "block"})
     });
     
     $("#parses").on('click', function(){
