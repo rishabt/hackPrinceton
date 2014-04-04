@@ -196,23 +196,41 @@ $(document).ready(function(){
     }
     
     SprayReader.prototype.upSpeed = function(){
-        sprayReader.pause();
-        wpm = $("#speed").text();
-        wpm = parseInt(wpm, 10);
-        if (wpm<850) wpm+=50;
-        $("#speed").text(wpm);
-        sprayReader.setWpm(wpm);
-        sprayReader.resume();
+        if (sprayReader.isRunning){
+            sprayReader.pause();
+            wpm = $("#speed").text();
+            wpm = parseInt(wpm, 10);
+            if (wpm<850) wpm+=50;
+            $("#speed").text(wpm);
+            sprayReader.setWpm(wpm);
+            sprayReader.resume();
+        }
+        else{
+            wpm = $("#speed").text();
+            wpm = parseInt(wpm, 10);
+            if (wpm<850) wpm+=50;
+            $("#speed").text(wpm);
+            sprayReader.setWpm(wpm);
+        }
     } 
 
     SprayReader.prototype.downSpeed = function(){
-        sprayReader.pause();
-        wpm = $("#speed").text();
-        wpm = parseInt(wpm, 10);
-        if (wpm>150) wpm-=50;
-        $("#speed").text(wpm);
-        sprayReader.setWpm(wpm);
-        sprayReader.resume();   
+        if (sprayReader.isRunning){
+            sprayReader.pause();
+            wpm = $("#speed").text();
+            wpm = parseInt(wpm, 10);
+            if (wpm>150) wpm-=50;
+            $("#speed").text(wpm);
+            sprayReader.setWpm(wpm);
+            sprayReader.resume();   
+        }
+        else{
+            wpm = $("#speed").text();
+            wpm = parseInt(wpm, 10);
+            if (wpm>150) wpm-=50;
+            $("#speed").text(wpm);
+            sprayReader.setWpm(wpm);
+        }
     }
     
     $("#daBack").on('click', function(){
