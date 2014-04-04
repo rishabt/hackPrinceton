@@ -63,3 +63,12 @@
 #progressBar{
     border : 2px outset #000000;   
 }
+
+#classicReadButton {
+    position:fixed;
+    top:10px;
+}
+#speedReadButton {
+    position:fixed;
+    top:10px;
+}
