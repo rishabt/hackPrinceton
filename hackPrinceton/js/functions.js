@@ -93,7 +93,7 @@ $(document).ready(function(){
                 });
 
                 div.on('click', function(){
-                    window.scrollTo(0, 0);
+                    $('#page0').scrollTop(0);
 
                     $("#classicContent").empty();
                     $("#classicContent").append(text);
@@ -216,7 +216,7 @@ $(document).ready(function(){
     }
     
     $("#daBack").on('click', function(){
-        window.scrollTo(0, 0);
+        $('#page0').scrollTop(0);
         sprayReader.stop();
         event.preventDefault();
         
@@ -239,7 +239,12 @@ $(document).ready(function(){
         $('#pause').hide();
         $('#resume').show();
         $('#start').hide();
-        window.scrollTo($('#highlight'));
+        if (($('#highlight').offset().top-200)<0){
+            $('#page0').scrollTop(0);
+        }
+        else{
+            $('#page0').scrollTop($('#highlight').offset().top-200);
+        }
     });
     
     $("#speedReadButton").on('click', function(){
@@ -303,7 +308,7 @@ $(document).ready(function(){
     }); 
     
     $('#instaReadButton').on('click', function(){
-        window.scrollTo(0, 0);
+        $('#page0').scrollTop(0);
 
         var text = $('#instaReadText').val();
         

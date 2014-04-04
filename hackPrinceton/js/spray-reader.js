@@ -115,7 +115,6 @@ SprayReader.prototype = {
      
     progressUpdate : function(){
         var percent = (Math.ceil( (100*this.wordIdx / this.words.length) * 10 ) / 10).toFixed(2);
-        console.log($('#progressBar').width());
         $('#theProgress').width(percent+'%');
     },
     
